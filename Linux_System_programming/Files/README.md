@@ -42,7 +42,7 @@ int main(void)
   close(fd); // always close file descriptors
   return 0;
 }
-```
+
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 2.Develop a C program to open an existing text file and display its contents  *
@@ -455,3 +455,4 @@ int main(void)
   closedir(dir);
   return 0;
 }
+```
