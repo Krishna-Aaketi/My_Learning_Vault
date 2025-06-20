@@ -1,3 +1,5 @@
+## 1. Create a Text File and Write User Input
+```c
 // C program to create a new text file and write user input to it
 #include <stdio.h>
 #include <unistd.h>
@@ -40,7 +42,7 @@ int main(void)
   close(fd); // always close file descriptors
   return 0;
 }
-
+```
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 2.Develop a C program to open an existing text file and display its contents  *
