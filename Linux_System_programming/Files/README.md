@@ -1,35 +1,43 @@
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 1.Write a C program to create a new text file and write user input to it    *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+// C program to create a new text file and write user input to it
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
 
-#include<stdio.h>
-#include<unistd.h>
-#include<fcntl.h>
-#include<string.h>
 int main(void)
 {
-  int fd,ref,len;
+  int fd, ref, len;
   char buf[100];
+
   printf("Enter a string:\n");
-  scanf("%[^\n]",buf);           // be careful while using this format specifier --string length <= size-1
-  len=strlen(buf);
-  printf("%d\n",len);
-  fd=open("file.txt",O_CREAT|O_RDWR|O_TRUNC,0666); //O_CREAT use for if file is not exist then its create
-  printf("%d\n",fd);                               //O_RDWR use for write and file operation on files
-                                                   // O_TRUNC use for previous content removes 
-  if(fd<0)                                   // open system call return -1 open system call is failed 
+  scanf("%[^\n]", buf); // captures input until newline (avoid buffer overflow)
+
+  len = strlen(buf);
+  printf("Length: %d\n", len);
+
+  // O_CREAT: create if it doesn't exist
+  // O_RDWR: read and write access
+  // O_TRUNC: truncate file to 0 length if it exists
+  fd = open("file.txt", O_CREAT | O_RDWR | O_TRUNC, 0666);
+  printf("File descriptor: %d\n", fd);
+
+  if(fd < 0)
   {
     printf("open system call failed\n");
     return 0;
   }
-  ref=write(fd,buf,strlen(buf));                //write system return number of bytes written
-  printf("%d\n",ref);
-  if(ref<0)                                    // write system call return -1 write system call is failed
+
+  // write returns number of bytes written
+  ref = write(fd, buf, strlen(buf));
+  printf("Bytes written: %d\n", ref);
+
+  if(ref < 0)
   {
-    printf("Write system call is failed\n");
+    printf("Write system call failed\n");
     return 0;
   }
-  close(fd);                      //  close fd other than next runtime open system call fails
+
+  close(fd); // always close file descriptors
   return 0;
 }
 
