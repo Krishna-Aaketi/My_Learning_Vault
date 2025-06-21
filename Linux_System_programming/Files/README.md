@@ -42,8 +42,9 @@ int main(void)
   close(fd); // always close file descriptors
   return 0;
 }
-
-
+```
+##  Open an existing text file and display
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 2.Develop a C program to open an existing text file and display its contents  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -77,6 +78,7 @@ int main(void)
   return 0;
 }
 ```
+## Create a new directory in the current Directory
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 3.Implement a C program to create a new directory named "Test" in the * 
@@ -125,6 +127,7 @@ int main(void)
 }
 #endif
 ```
+## Check if a file exists in the current directory?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 4.Write a C program to check if a file named "sample.txt" exists in the current directory?  *
@@ -148,6 +151,7 @@ int main(void)
   return 0;
 }
 ```
+## rename a file
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 5. Develop a C program to rename a file from "oldname.txt" to "newname.txt"?  *
@@ -169,6 +173,7 @@ int main(void)
   return 0;
 }
 ```
+##  Delete a file 
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 6. Implement a C program to delete a file named "delete_me.txt"?    *  
@@ -190,6 +195,7 @@ int main(void)
   return 0;
 }
 ```
+## Copy the contents of one file to another
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 7. Write a C program to copy the contents of one file to another?           * 
@@ -243,6 +249,7 @@ int main(void)
   }
 }
 ```
+##  Move a file from one directory to Another
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 8.Develop a C program to move a file from one directory to another?   *
@@ -266,6 +273,7 @@ int main(void)
   return 0;
 }
 ```
+##  list all files in the current directory
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 9. Implement a C program to list all files in the current directory?  *
@@ -294,6 +302,7 @@ int main(void)
   return 0;
 }
 ```
+## Get the size of a file
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 10. Write a C program to get the size of a file named "file.txt"?     *
@@ -315,11 +324,11 @@ int main(void)
   return 0;
 }
 ```
+## Check if a directory exists in the current directory
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 11.Develop a C program to check if a directory named    *
- * "Test" exists in the current directory?                 *    
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * 11.Develop a C program to check if a directory named "Test" exists in the current directory?  *       
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * /
 
 #include <stdio.h>
 #include <sys/stat.h>
@@ -340,11 +349,11 @@ int main(void)
   return 0;
 }
 ```
+## Create a new directory in the parent directory?
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 12.Implement a C program to create a new directory named "Backup" *
- * in the parent directory?                                          *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 12.Implement a C program to create a new directory named "Backup" in the parent directory?  * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <stdio.h>
 #include <sys/stat.h>
@@ -369,12 +378,11 @@ int main(void)
     return 0;
 }
 ```
+## Recursively list all files and directories
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 13. Write a C program to recursively list all files and           *
- * directories in a given directory?                                 *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 13. Write a C program to recursively list all files and directories in a given directory? *                               *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -418,6 +426,7 @@ void listFiles(const char *basePath)
   closedir(dir);
 }
 ```
+## Delete all files in a directory
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 14. Develop a C program to delete all files in a directory named "Temp"?  *
@@ -466,6 +475,7 @@ int main(void)
   return 0;
 }
 ```
+## Count the number of lines in a file
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 15.Implement a C program to count the number of lines in a file named "data.txt"? *
@@ -498,11 +508,11 @@ int main(void)
   return 0;
 }
 ```
+## Add "Goodbye!" to the end of an existing file
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 16.Write a C program to append "Goodbye!" to the end of an existing             *
- * file named "message.txt"?                                                       *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 16.Write a C program to append "Goodbye!" to the end of an existing file named "message.txt"? *                                                     *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 #include <stdio.h>
 
 int main(void) 
@@ -522,6 +532,7 @@ int main(void)
   return 0;
 }
 ```
+## Change the permissions of a file
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 17.Implement a C program to change the permissions of a file named "file.txt" to readonly? *
@@ -547,12 +558,11 @@ int main(void)
   return 0;
 }
 ```
+## Change the ownership of a file
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 18. Write a C program to change the ownership of a file named "file.txt"                  *
- * to the user "user1"?                                                                      *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
-
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 18. Write a C program to change the ownership of a file named "file.txt" to the user "user1"? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -583,6 +593,7 @@ int main(void)
   return 0;
 }
 ```
+## Get the last modified timestamp of a file
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 19. Develop a C program to get the last modified timestamp of a file named "file.txt"?    *
@@ -606,6 +617,7 @@ int main(void)
   return 0;
 }
 ```
+## Create a temporary file and write some data
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 20. Implement a C program to create a temporary file and write some data to it? *
@@ -640,6 +652,7 @@ int main(void)
   return 0;
 }
 ```
+
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *21. Write a C program to check if a given path refers to a file or a directory?  *
