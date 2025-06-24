@@ -1326,9 +1326,10 @@ int main(void)
 ```
 ### 37.read data from a text file and write it to another file in reverse order? 
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 37. Develop a C program to read data from a text file named "input.txt" and write it to another file named "output.txt" in reverse order? * 
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 37. Develop a C program to read data from a text file named "input.txt" and write it to another file    *
+ * named "output.txt" in reverse order?                                                                    * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1356,7 +1357,8 @@ int main(void)
   // Move to end to find file size
   fseek(in_fp, 0, SEEK_END);                  // fseek() -Moves the file position indicator to a given byte in the file.
   file_size = ftell(in_fp);                   //  SEEK_END -Moves the file pointer to the end of file.
-  // Read from end and write to output    //ftell()-Returns the current file pointer position (here, it gives the file size after fseek to end).  
+  // Read from end and write to output    //ftell()-Returns the current file pointer position
+                                           //(here, it gives the file size after fseek to end).  
   for (long i = file_size - 1; i >= 0; i--) 
   {
     fseek(in_fp, i, SEEK_SET);                       //SEEK_SET -Moves the file pointer to the i-th byte from the beginning
