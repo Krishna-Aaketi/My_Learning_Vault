@@ -1,4 +1,4 @@
-## -----Create Thread programms------
+##                                                          -----Create Thread Programms------
  
 ### 1.Prints "Hello, World!"?
 ```c
@@ -28,7 +28,7 @@ void *create_thread(void *arg)                                // thread function
   return 0;
 }
 ```
-## 2.Multiple threads,each printing its own message? 
+### 2.Multiple threads,each printing its own message? 
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 2.Write a c program to create multiple threads,each printing its own message? *
@@ -80,7 +80,7 @@ void *create_thread4(void *arg)                                // thread functio
   pthread_exit(0);
 }
 ```
-## 3.Print numbers from 1 to 10 concurrently?
+### 3.Print numbers from 1 to 10 concurrently?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 3.Develop a C program to create two threads that print numbers from 1 to 10 concurrently? *
@@ -115,7 +115,7 @@ void *create_thread(void *arg)                                // thread function
 }
 
 ```
-## 4.Calculates the factorial of a given number? 
+### 4.Calculates the factorial of a given number? 
 ```c
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -155,7 +155,7 @@ void *create_thread(void *arg)                                // thread function
 } 
 
 ```
-## 5.Print their thread IDs?
+### 5.Print their thread IDs?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 5.Write a C program to create two threads that print their thread IDs?  *
@@ -184,7 +184,7 @@ void *create_thread(void *arg)                                // thread function
 } 
 
 ```
-## 6.Prints the sum of two numbers?
+### 6.Prints the sum of two numbers?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *6.Develop a C program to create a thread that prints the sum of two numbers? *
@@ -219,7 +219,7 @@ void *create_thread(void *arg)                                // thread function
   printf("sum=%d\n",(nums->a)+(nums->b));
 } 
 ```
-## 7.Calculates the square of a number?  
+### 7.Calculates the square of a number?  
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 7.Implement a C program to create a thread that calculates the square of a number?  *
@@ -248,7 +248,7 @@ void *create_thread(void *arg)                                // thread function
   printf("square=%d\n",num*num);
 } 
 ```
-## 8.Prints the current date and time?
+### 8.Prints the current date and time?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 8.Write a C program to create a thread that prints the current date and time? *
@@ -277,7 +277,7 @@ void *create_thread(void *arg)                                // thread function
   printf("time=%s\n",asctime(current_time));
 } 
 ```
-## 9.Checks if a number is prime?
+### 9.Checks if a number is prime?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 9.Develop a C program to create a thread that checks if a number is prime?    *
@@ -338,7 +338,7 @@ void *create_thread(void *arg)                                // thread function
   return ptr;
 } 
 ```
-## 10.Checks if a given string is a palindrome? 
+### 10.Checks if a given string is a palindrome? 
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  * 10.Implement a C program to create a thread that checks if a given string is a palindrome?  *
@@ -394,7 +394,7 @@ void *create_thread(void *arg)                                // thread function
   return ptr;
 } 
 ```
-## 11.Prints "Hello, World!" with thread synchronization?
+### 11.Prints "Hello, World!" with thread synchronization?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 11.Write a C program to create a thread that prints "Hello, World!" with thread synchronization?*
@@ -423,7 +423,7 @@ void *create_thread(void *arg)                                // thread function
 }
 
 ```
-## 12.Print their thread IDs and synchronize their output
+### 12.Print their thread IDs and synchronize their output
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 12.Develop a C program to create two threads that print their thread IDs and synchronize their output *
@@ -460,7 +460,7 @@ void *create_thread(void *arg)                                // thread function
   pthread_mutex_unlock(&lock);
 } 
 ```
-## 13.Random numbers and synchronizes access to a shared buffer?
+### 13.Random numbers and synchronizes access to a shared buffer?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 13.Implement a C program to create a thread that generates random numbers and synchronizes access to a shared buffer? *
@@ -505,7 +505,7 @@ void *create_thread(void *arg)                                // thread function
   }
 } 
 ```
-## 14.Performs addition of two numbers with mutex locks?
+### 14.Performs addition of two numbers with mutex locks?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 14.Write a C program to create a thread that performs addition of two numbers with mutex locks? *
@@ -551,7 +551,7 @@ void *create_thread(void *arg)                                // thread function
 } 
 
 ```
-## 15.Increment and decrement a shared variable,respectively, using mutex locks?
+### 15.Increment and decrement a shared variable,respectively, using mutex locks?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 15.Implement a C program to create two threads that increment and decrement a shared variable,  *
@@ -610,7 +610,7 @@ void *create_thread2(void *arg)                                // thread functio
   }
 } 
 ```
-## 16.reads input from the user and synchronizes access to shared resources
+### 16.reads input from the user and synchronizes access to shared resources
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 16.Develop a C program to create a thread that reads input from the user and synchronizes     *
@@ -647,7 +647,7 @@ void *create_thread(void *arg)                                // thread function
   return 0;
 }
 ```
-## 17.Prints prime numbers up to a given limit with mutex locks?
+### 17.Prints prime numbers up to a given limit with mutex locks?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 17.Implement a C program to create a thread that prints prime numbers up to a given limit with mutex locks? *
@@ -706,7 +706,7 @@ void *create_thread(void *arg)                                // thread function
 } 
 
 ```
-## 18.calculates the sum of Fibonacci numbers up to a given limit mutex locks 
+### 18.calculates the sum of Fibonacci numbers up to a given limit mutex locks 
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 18.Implement a C program to create a thread that calculates the sum of              *
