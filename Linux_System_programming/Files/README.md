@@ -1,49 +1,42 @@
-## 1. Create a Text File and Write User Input
+## 1.Create a new text file and write user input to it
 ```c
-// C program to create a new text file and write user input to it
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <string.h>
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 1.Write a C program to create a new text file and write user input to it    *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#include<stdio.h>
+#include<unistd.h>
+#include<fcntl.h>
+#include<string.h>
 int main(void)
 {
-  int fd, ref, len;
+  int fd,ref,len;
   char buf[100];
-
   printf("Enter a string:\n");
-  scanf("%[^\n]", buf); // captures input until newline (avoid buffer overflow)
-
-  len = strlen(buf);
-  printf("Length: %d\n", len);
-
-  // O_CREAT: create if it doesn't exist
-  // O_RDWR: read and write access
-  // O_TRUNC: truncate file to 0 length if it exists
-  fd = open("file.txt", O_CREAT | O_RDWR | O_TRUNC, 0666);
-  printf("File descriptor: %d\n", fd);
-
-  if(fd < 0)
+  scanf("%[^\n]",buf);           // be careful while using this format specifier --string length <= size-1
+  len=strlen(buf);
+  printf("%d\n",len);
+  fd=open("file.txt",O_CREAT|O_RDWR|O_TRUNC,0666); //O_CREAT use for if file is not exist then its create
+  printf("%d\n",fd);                               //O_RDWR use for write and file operation on files
+                                                   // O_TRUNC use for previous content removes 
+  if(fd<0)                                   // open system call return -1 open system call is failed 
   {
     printf("open system call failed\n");
     return 0;
   }
-
-  // write returns number of bytes written
-  ref = write(fd, buf, strlen(buf));
-  printf("Bytes written: %d\n", ref);
-
-  if(ref < 0)
+  ref=write(fd,buf,strlen(buf));                //write system return number of bytes written
+  printf("%d\n",ref);
+  if(ref<0)                                    // write system call return -1 write system call is failed
   {
-    printf("Write system call failed\n");
+    printf("Write system call is failed\n");
     return 0;
   }
-
-  close(fd); // always close file descriptors
+  close(fd);                      //  close fd other than next runtime open system call fails
   return 0;
 }
-
-
+```
+## 2.Open an existing text file and display its contents 
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 2.Develop a C program to open an existing text file and display its contents  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -76,11 +69,12 @@ int main(void)
   close(fd);                     
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 3.Implement a C program to create a new directory named "Test" in the * 
- *  current directory?                                                   *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+```
+## 3.Create a new directory in the current directory?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 3.Implement a C program to create a new directory named "Test" in the current directory?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #if 0                     // conditional compilation if it is 0 not execute
 #include <stdlib.h>
@@ -123,7 +117,9 @@ int main(void)
     return 0;
 }
 #endif
-
+```
+## 4.Check if a file exists in the current directory
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 4.Write a C program to check if a file named "sample.txt" exists in the current directory?  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -145,7 +141,9 @@ int main(void)
   }
   return 0;
 }
-
+```
+## 5.rename a file ?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 5. Develop a C program to rename a file from "oldname.txt" to "newname.txt"?  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -165,8 +163,9 @@ int main(void)
   }
   return 0;
 }
-
-
+```
+## 6.Delete a file named "delete_me.txt"?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 6. Implement a C program to delete a file named "delete_me.txt"?    *  
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -186,8 +185,9 @@ int main(void)
   }
   return 0;
 }
-
-
+```
+## 7.Copy the contents of one file to another?  
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 7. Write a C program to copy the contents of one file to another?           * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -239,7 +239,9 @@ int main(void)
     return 0;
   }
 }
-
+```
+### 8.Move a file from one directory to another?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 8.Develop a C program to move a file from one directory to another?   *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -261,7 +263,9 @@ int main(void)
   }
   return 0;
 }
-
+```
+### 9.List all files in the current directory?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 9. Implement a C program to list all files in the current directory?  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -288,7 +292,9 @@ int main(void)
   closedir(dir_stream);
   return 0;
 }
-
+```
+### 10.Get the size of a file named "file.txt"?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 10. Write a C program to get the size of a file named "file.txt"?     *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -308,11 +314,12 @@ int main(void)
   printf("Size of file.txt: %ld bytes\n", file_stat.st_size); 
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 11.Develop a C program to check if a directory named    *
- * "Test" exists in the current directory?                 *    
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+```
+### 11.Check if a directory exists in the current directory?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 11.Develop a C program to check if a directory named "Test" exists in the current directory?  *    
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <stdio.h>
 #include <sys/stat.h>
@@ -332,11 +339,12 @@ int main(void)
   }
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 12.Implement a C program to create a new directory named "Backup" *
- * in the parent directory?                                          *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+```
+### 12.Create a new directory named "Backup" in the parent directory? 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 12.Implement a C program to create a new directory named "Backup" in the parent directory?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <stdio.h>
 #include <sys/stat.h>
@@ -360,12 +368,12 @@ int main(void)
 
     return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 13. Write a C program to recursively list all files and           *
- * directories in a given directory?                                 *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
+```
+### 13.Recursively list all files and directories in a given directory?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 13. Write a C program to recursively list all files and directories in a given directory? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -408,7 +416,9 @@ void listFiles(const char *basePath)
   }
   closedir(dir);
 }
-
+```
+### 14.Delete all files in a directory named "Temp"? 
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 14. Develop a C program to delete all files in a directory named "Temp"?  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -455,10 +465,9 @@ int main(void)
   closedir(dir);
   return 0;
 }
-<<<<<<< HEAD
 ```
-=======
-
+### 15.Count the number of lines in a file named "data.txt"?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 15.Implement a C program to count the number of lines in a file named "data.txt"? *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -489,11 +498,12 @@ int main(void)
   printf("Total number of lines: %d\n", line_count);
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 16.Write a C program to append "Goodbye!" to the end of an existing             *
- * file named "message.txt"?                                                       *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 16.Append "Goodbye!" to the end of an existing file named "message.txt"?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 16.Write a C program to append "Goodbye!" to the end of an existing file named "message.txt"? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 #include <stdio.h>
 
 int main(void) 
@@ -512,7 +522,9 @@ int main(void)
   printf("Text appended successfully.\n");
   return 0;
 }
-
+```
+### 17.Change the permissions of a file named "file.txt" to readonly?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 17.Implement a C program to change the permissions of a file named "file.txt" to readonly? *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -536,11 +548,12 @@ int main(void)
   }
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 18. Write a C program to change the ownership of a file named "file.txt"                  *
- * to the user "user1"?                                                                      *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 18.Change the ownership of a file named "file.txt" to the user "user1"?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 18. Write a C program to change the ownership of a file named "file.txt" to the user "user1"? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -571,7 +584,9 @@ int main(void)
   }
   return 0;
 }
-
+```
+### 19.Get the last modified timestamp of a file named "file.txt"?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 19. Develop a C program to get the last modified timestamp of a file named "file.txt"?    *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -593,7 +608,9 @@ int main(void)
   printf("Last modified time of %s: %s", filename, ctime(&file_stat.st_mtime));
   return 0;
 }
-
+```
+### 20.Create a temporary file and write some data to it?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 20. Implement a C program to create a temporary file and write some data to it? *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -601,7 +618,7 @@ int main(void)
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void) 
+int main() 
 {
   // Create a temporary file
   FILE *temp_file = tmpfile();
@@ -626,7 +643,9 @@ int main(void)
   fclose(temp_file);
   return 0;
 }
-
+```
+### 21.Check if a given path refers to a file or a directory?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *21. Write a C program to check if a given path refers to a file or a directory?  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -659,11 +678,12 @@ int main(void)
   }
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 22. Develop a C program to create a hard link named "hardlink.txt"                        *
- * to a file named "source.txt"?                                                             *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 23.Create a hard link named "hardlink.txt" to a file named "source.txt"?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 22. Develop a C program to create a hard link named "hardlink.txt" to a file named "source.txt"?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <unistd.h>
@@ -684,11 +704,12 @@ int main(void)
   }
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
- * 23. Implement a C program to read and display the contents of   *
- *  a CSV file named "data.csv"?                                   *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 23.Read and display the contents of a CSV file named "data.csv"
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * 23. Implement a C program to read and display the contents of a CSV file named "data.csv"?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -709,7 +730,9 @@ int main(void)
   fclose(fp);
   return 0;
 }
-
+```
+### 24.Get the absolute path of the current working directory?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 24. Write a C program to get the absolute path of the current working directory?  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -732,7 +755,9 @@ int main(void)
   }
   return 0;
 }
-
+```
+### 25.Get the size of a directory
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 25. Develop a C program to get the size of a directory named "Documents"? *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -791,11 +816,12 @@ long get_directory_size(const char *path)
   closedir(dir);
   return total_size;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 26. Implement a C program to recursively copy all files         *
- * and directories from one directory to another?                  *  
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 26.Recursively copy all files and directories from one directory to another?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 26. Implement a C program to recursively copy all files and directories from one directory to another?  *  
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -875,11 +901,12 @@ void copy_directory(const char *src_dir, const char *dst_dir)
   }
   closedir(dir);
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 27. Write a C program to get the number of files in   *
- * a directory named "Images"?                           *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 27.Get the number of files in a directory
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 27. Write a C program to get the number of files in a directory named "Images"? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -916,11 +943,12 @@ int main(void)
   printf("Number of regular files in '%s': %d\n", dirname, count);
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 28. Develop a C program to create a FIFO (named pipe)     *
- * named "myfifo" in the current directory?                  *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 28.create a FIFO in the current directory? 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * 28. Develop a C program to create a FIFO (named pipe) named "myfifo" in the current directory?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 #if 0
 #include <stdio.h>
 #include <stdlib.h>
@@ -967,7 +995,9 @@ int main(void)
   printf("fifo is created\n");
   return 0;
 }
-
+```
+### 29.Read data from a FIFO named "myfifo"? 
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 29. Implement a C program to read data from a FIFO named "myfifo"?  * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -1002,7 +1032,9 @@ int main()
   close(fd);
   return 0;
 }
-
+```
+### 30.Truncate a file named "file.txt" to a specified length?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 30. Write a C program to truncate a file named "file.txt" to a specified length?  * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -1026,11 +1058,12 @@ int main(void)
   }
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 31. Develop a C program to search for a specific string in a file     *
- * named "data.txt" and display the line number(s) where it occurs?      *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 31.Search for a specific string in a file and display the line number(s)
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 31. Develop a C program to search for a specific string in a file named "data.txt" and display the line number(s) where it occurs?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <string.h>
@@ -1069,11 +1102,12 @@ int main(void)
   }
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 32. Implement a C program to get the file type (regular file, directory,  *
- * symbolic link, etc.) of a given path?                                     *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 32.Get the file type (regular file, directory,symbolic link, etc.) of a given path?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 32. Implement a C program to get the file type (regular file, directory,symbolic link, etc.) of a given path? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <sys/stat.h>
@@ -1111,7 +1145,9 @@ int main(void)
      printf("Unknown file type.\n");
      return 0;
 }
-
+```
+### 33.Create a new empty file named "empty.txt"?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 33. Write a C program to create a new empty file named "empty.txt"? *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -1134,7 +1170,9 @@ int main(void)
   close(fd);
   return 0;
 }
-
+```
+### 34.Get the permissions (mode) of a file named "file.txt"?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 34. Develop a C program to get the permissions (mode) of a file named "file.txt"? *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -1170,11 +1208,12 @@ int main(void)
   printf("\n");
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 35. Implement a C program to recursively delete a directory named   *
- * "Temp" and all its contents?                                        *                     
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 35.Recursively delete a directory named "Temp" and all its contents?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 35. Implement a C program to recursively delete a directory named "Temp" and all its contents?  *                     
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1253,7 +1292,9 @@ int delete_directory(const char *path)
   }
   return 0;
 }
-
+```
+### 36.Read and display the first 10 lines of a file named "log.txt"?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 36. Write a C program to read and display the first 10 lines of a file named "log.txt"? *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -1282,11 +1323,12 @@ int main(void)
   fclose(fp);
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
- * 37. Develop a C program to read data from a text file named "input.txt"     *
- * and write it to another file named "output.txt" in reverse order?           * 
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 37.read data from a text file and write it to another file in reverse order? 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 37. Develop a C program to read data from a text file named "input.txt" and write it to another file named "output.txt" in reverse order? * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1326,11 +1368,12 @@ int main(void)
   fclose(out_fp);
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 38. Implement a C program to create a new directory named with    *
- * the current date in the format "YYYY-MM-DD"?                      *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 38.create a new directory with the current date in the format "YYYY-MM-DD"?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 38. Implement a C program to create a new directory named with the current date in the format "YYYY-MM-DD"? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <time.h>
@@ -1359,11 +1402,12 @@ int main(void)
   }
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 39. Write a C program to read and display the contents of       *
- *  a binary file named "binary.bin"?                              *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 39.Read and display the contents of a "binary.bin"?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 39. Write a C program to read and display the contents of a binary file named "binary.bin"? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1394,7 +1438,9 @@ int main(void)
   fclose(file);
   return 0;
 }
-
+```
+### 40.Get the size of the largest file in a directory?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 40. Develop a C program to get the size of the largest file in a directory?   *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -1471,7 +1517,9 @@ off_t get_largest_file_size(const char *path, char *largest_file_path)
   closedir(dir);
   return max_size;
 }
-
+```
+### 41.Check if a file named "data.txt" is readable? 
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 41. Implement a C program to check if a file named "data.txt" is readable?  * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -1493,12 +1541,13 @@ int main(void)
   }
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 42. Write a C program to create a new directory named "Logs"    *
- * and move all files with the ".log" extension into it?           *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
-
+```
+### 42.Directory "Logs" and move all files with the ".log" extension into it? 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * 42. Write a C program to create a new directory named "Logs" and move all files with the ".log" extension into it?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1555,7 +1604,9 @@ int main(void)
   closedir(d);
   return 0;
 }
-
+```
+### 43.Check if a file "config.ini" is writable?
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 43. Develop a C program to check if a file named "config.ini" is writable?  *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -1578,11 +1629,12 @@ int main(void)
   }
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 44. Implement a C program to read the contents of a text file             * 
- * named "instructions.txt" and execute the instructions as shell commands?  *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 44.Read the contents of a text file and execute the instructions as shell commands? 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 44. Implement a C program to read the contents of a text file named "instructions.txt" and execute the instructions as shell commands?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -1604,7 +1656,9 @@ int main(void)
   fclose(fd);
   return 0;
 }
-
+```
+### 45.Get the number of hard links to a file 
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 45. Write a C program to get the number of hard links to a file named "file.txt"? *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -1626,11 +1680,12 @@ int main(void)
   printf("Number of hard links to file.txt: %lu\n", (unsigned long)fileStat.st_nlink);
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 46. Develop a C program to copy the contents of all text files    *
- * in a directory into a single file named "combined.txt"?           *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 46.Copy the contents of all text files in a directory into a single file
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 46. Develop a C program to copy the contents of all text files in a directory into a single file named "combined.txt"?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * / 
 
 #include <stdio.h>
 #include <dirent.h>
@@ -1675,17 +1730,17 @@ int main(void)
       fclose(src);
     }
   }
-  fclose(dest);
+  fclose(dest); 
   closedir(dir);
   printf("All text files have been combined into combined.txt\n");
   return 0;
 }
-
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 47. Implement a C program to recursively calculate the total size   *
- * of all files in a directory and its subdirectories?                 *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 47.Recursively calculate the total size of all files in a directory and its subdirectories?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * 47. Implement a C program to recursively calculate the total size of all files in a directory and its subdirectories? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1739,8 +1794,9 @@ long long get_directory_size(const char *path)
   closedir(dir);
   return total_size;
 }
-
-
+```
+### 48.Get the number of bytes in a file named "data.bin"? 
+```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 48. Write a C program to get the number of bytes in a file named "data.bin"?    *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
@@ -1769,11 +1825,12 @@ int main(void)
   printf("Size of data.bin: %ld bytes\n", size);
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 49. Develop a C program to create a new directory named           *
- * with the current timestamp in the format "YYYY-MM-DD-HH-MM-SS"?   *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 49.Create a new directory named with the current timestamp
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 49. Develop a C program to create a new directory named with the current timestamp in the format "YYYY-MM-DD-HH-MM-SS"? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1803,11 +1860,12 @@ int main(void)
   }
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 52. Implement a C program to open a file named "data.txt"     *
- * in read mode and display its contents?                        *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 52.Open a file named "data.txt" in read mode and display its contents?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 52. Implement a C program to open a file named "data.txt" in read mode and display its contents?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 
@@ -1831,11 +1889,12 @@ int main(void)
   fclose(fp);
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 63. Write a C program to create a symbolic link named "link.txt"  *
- * to a file named "target.txt"?                                     *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 63.create a symbolic link 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 63. Write a C program to create a symbolic link named "link.txt" to a file named "target.txt"?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <unistd.h>
@@ -1854,11 +1913,12 @@ int main(void)
   }
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 78. Implement a C program to read and display the contents of a binary file   *
- * named "binary.bin"?                                                           *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 78.Read and display the contents of a binary file
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 78. Implement a C program to read and display the contents of a binary file named "binary.bin"? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1886,11 +1946,12 @@ int main(void)
   fclose(file);
   return 0;
 }
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 82. Develop a C program to read data from a binary file named "data.bin"  *
- * and display it in hexadecimal format?                                     *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+```
+### 82.Read data from a binary file and display it in hexadecimal format?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 82. Develop a C program to read data from a binary file named "data.bin" and display it in hexadecimal format?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1919,4 +1980,4 @@ int main(void)
   fclose(fp);
   return 0;
 }
->>>>>>> ae9b459 (Added markdown preview with code samples)
+```
