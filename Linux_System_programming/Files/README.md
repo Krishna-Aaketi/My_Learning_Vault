@@ -1061,9 +1061,9 @@ int main(void)
 ```
 ### 31.Search for a specific string in a file and display the line number(s)
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 31. Develop a C program to search for a string in a file named "data.txt" and display the line number(s) where it occurs? *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * 31. Develop a C program to search for a string in a file "data.txt" and display the line number where it occurs?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <string.h>
