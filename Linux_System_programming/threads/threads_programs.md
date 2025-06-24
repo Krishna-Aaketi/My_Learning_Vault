@@ -773,3 +773,193 @@ void *create_thread(void *arg)
   pthread_exit(NULL);
 }
 ```
+### 19.Given year is a leap year using dynamic programming with mutex locks?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 19.Write a C program to create a thread that checks if a given year is a leap year using  *
+ * dynamic programming with mutex locks?                                                     *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+pthread_mutex_t lock;
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;
+  int year;
+  printf("Enter the year: ");
+  scanf("%d", &year);
+  if(year <= 0)
+  {
+     printf("Please enter Positive values\n");
+     return 1;
+  }
+  if(pthread_mutex_init(&lock, NULL) != 0)
+  {
+    printf("Mutex init failed\n");
+    return 1;
+  }
+  pthread_create(&tid, NULL,create_thread, (void *)&year);
+  pthread_join(tid, NULL);
+  pthread_mutex_destroy(&lock);
+  return 0;
+}
+
+// Thread function
+void *create_thread(void *arg)
+{
+  int year=*(int *)arg;
+  if(((year%4==0) && (year%100 !=0)) || (year % 400 ==0))
+  {
+    pthread_mutex_lock(&lock);
+    printf("Given year is leap year\n");
+    pthread_mutex_unlock(&lock);
+  }
+  else
+  {
+    printf("Given year is not a leap year\n");
+  }
+  pthread_exit(NULL);
+}
+```
+### 20.Checks if a given string is a palindrome using dynamic programming with mutex locks?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 20.Write a C program to create a thread that checks if a given string is a palindrome using *
+ * dynamic programming with mutex locks?                                                       *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+#include<string.h>
+
+pthread_mutex_t lock;
+void *create_thread(void *arg);
+
+int main(void)
+{
+  char str[100];
+  pthread_t tid;
+  printf("Enter string(99<):");
+  scanf("%s",str);
+  if(pthread_mutex_init(&lock,NULL) != 0)
+  {
+    printf("mutex lock is failed\n");
+    return 0;
+  }
+  pthread_create(&tid,NULL,create_thread,(void *)str);     // Create the thread
+  pthread_join(tid,NULL);                      // wait for the thread to finish
+  pthread_mutex_destroy(&lock);
+  return 0;
+}
+void *create_thread(void *arg)                                // thread function
+{
+  int *ptr=(int *)malloc(sizeof(int));
+  char *str=(char *)arg;
+  int len=strlen(str),i=0;
+  if(ptr==NULL)
+  {
+    printf("Malloc failed\n");
+    pthread_exit(0);
+  }
+  *ptr=1;
+  pthread_mutex_lock(&lock);
+  for(i=0; i<len;i++)
+  {
+    if(str[i] !=str[--len])
+    {
+      *ptr=0;
+      break;
+    }
+  }
+  if((*ptr)==0)
+  {
+    printf("Given string is not palindrome\n");
+  }
+  else
+  {
+    printf("Given string is palindrome\n");
+  }
+  free(ptr);
+  pthread_mutex_unlock(&lock);
+}
+```
+### 22.Calculates the area of a triangle?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 22.Develop a C program to create a thread that calculates the area of a triangle? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<unistd.h>
+#include<pthread.h>
+
+struct two_args
+{
+  float b;
+  float h;
+};
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  struct two_args nums;
+  pthread_t tid;                                    // Thread
+  printf("Enter base and height:");
+  scanf("%f%f",&nums.b,&nums.h);
+  pthread_create(&tid,NULL,create_thread,(void *)&nums);     // Create the thread
+  pthread_join(tid,NULL);                          // wait for the thread to finish
+  return 0;
+}
+void *create_thread(void *arg)                                // thread function
+{
+  struct two_args *nums=(struct two_args *)arg;
+  printf("area of triangle=%.2f\n",0.5*(nums->b)*(nums->h));
+}
+```
+### 23.Calculates the sum of squares of numbers from 1 o 100? 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 23.Write a C program to create a thread that calculates the sum of                *
+ * squares of numbers from 1 o 100?                                                  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<unistd.h>
+#include<pthread.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;                                    // Thread
+  pthread_create(&tid,NULL,create_thread,NULL);     // Create the thread
+  pthread_join(tid,NULL);                          // wait for the thread to finish
+  return 0;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  int i=3,num=100,sum=0,j=0;
+  while(i<=num)
+  {
+    for(j=2;j<9;j++)
+    {
+      if(j*j==i)
+      {
+        sum +=i;
+        printf("%d ",i);
+      }
+    }
+    i++;
+  }
+  printf("sum of square=%d\n",sum);
+}
+```
