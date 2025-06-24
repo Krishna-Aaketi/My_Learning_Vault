@@ -142,7 +142,7 @@ int main(void)
   return 0;
 }
 ```
-## 5.rename a file ?
+## 5.Rename a file ?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 5. Develop a C program to rename a file from "oldname.txt" to "newname.txt"?  *
@@ -1061,9 +1061,9 @@ int main(void)
 ```
 ### 31.Search for a specific string in a file and display the line number(s)
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 31. Develop a C program to search for a specific string in a file named "data.txt" and display the line number(s) where it occurs?  *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 31. Develop a C program to search for a string in a file named "data.txt" and display the line number(s) where it occurs? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <string.h>
