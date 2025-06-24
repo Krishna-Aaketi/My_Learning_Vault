@@ -1686,9 +1686,9 @@ int main(void)
 ```
 ### 46.Copy the contents of all text files in a directory into a single file
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 46. Develop a C program to copy the contents of all text files in a directory into a single file named "combined.txt"?  *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * / 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 46.Develop a C program to copy the contents of all text files in a directory into a single file "combined.txt"? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
 
 #include <stdio.h>
 #include <dirent.h>
