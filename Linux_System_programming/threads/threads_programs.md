@@ -829,10 +829,9 @@ void *create_thread(void *arg)
 ```
 ### 20.Checks if a given string is a palindrome using dynamic programming with mutex locks?
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 20.Write a C program to create a thread that checks if a given string is a palindrome using *
- * dynamic programming with mutex locks?                                                       *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 20.Write a C program to create a thread that checks if a given string is a palindrome using dynamic programming with mutex locks? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -888,6 +887,61 @@ void *create_thread(void *arg)                                // thread function
   }
   free(ptr);
   pthread_mutex_unlock(&lock);
+}
+```
+### 21.Selection sort on an array of integers?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *21.Implement a C program to create a thread that performs selection sort on an array of integers?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<pthread.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;                                    // Thread
+  int status=0;
+  status=pthread_create(&tid,NULL,create_thread,NULL);     // Create the thread
+  if(status != 0)
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,NULL);                          // wait for the thread to finish
+  return 0;
+}
+void *create_thread(void *arg)
+{
+  int i,j,temp,index,n,a[100];
+  printf("Enter number of elements :\n");
+  scanf("%d",&n);
+  printf("Enter elements :\n");
+  for(i=0;i<n; i++)
+  {
+    scanf("%d",&a[i]);
+  }
+  for(i=1;i<n-1;i++)
+  {
+    index=0;
+    for(j=1;j<=n-i;j++)
+    {
+      if(a[index]<a[j])
+      {
+        index=j;
+      }
+    }
+    temp=a[j-1];
+    a[j-1]=a[index];
+    a[index]=temp;
+  }
+  for(i=0;i<n; i++)
+  {
+    printf("%d\n",a[i]);
+  }
+  pthread_exit(0);
 }
 ```
 ### 22.Calculates the area of a triangle?
