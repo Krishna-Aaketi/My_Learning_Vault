@@ -371,7 +371,7 @@ int main(void)
   return 0; 
 }
 
-void *create_thread(void *arg)                                // thread function 
+void *create_thread(void *arg)                                // thread function
 {
   int *ptr=(int *)malloc(sizeof(int));
   char *str=(char *)arg;
@@ -384,7 +384,7 @@ void *create_thread(void *arg)                                // thread function
   *ptr=1;
   for(i=0; i<len;i++)
   {
-    if(str[i]==str[--len])
+    if(str[i] !=str[--len])
     {
       *ptr=0;
       return ptr;
@@ -392,7 +392,7 @@ void *create_thread(void *arg)                                // thread function
     }
   }
   pthread_exit(ptr);
-} 
+}
 ```
 ### 11.Prints "Hello, World!" with thread synchronization?
 ```c
