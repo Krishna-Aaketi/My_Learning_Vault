@@ -926,10 +926,9 @@ void *create_thread(void *arg)                                // thread function
 ```
 ### 23.Calculates the sum of squares of numbers from 1 o 100? 
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 23.Write a C program to create a thread that calculates the sum of                *
- * squares of numbers from 1 o 100?                                                  *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 23.Write a C program to create a thread that calculates the sum of squares of numbers from 1 o 100? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include<stdio.h>
 #include<unistd.h>
@@ -961,5 +960,325 @@ void *create_thread(void *arg)                                // thread function
     i++;
   }
   printf("sum of square=%d\n",sum);
+}
+```
+### 24. Generates a random array of integers?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 24.Write a C program to create a thread that generates a random array of integers?*
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<unistd.h>
+#include<pthread.h>
+#include<stdlib.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;                                    // Thread
+  int status=0;
+  status=pthread_create(&tid,NULL,create_thread,NULL);     // Create the thread
+  if(status != 0)
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,NULL);                          // wait for the thread to finish
+  return 0;
+}
+void *create_thread(void *arg)                                // thread function
+{
+  int a[10],i=0;
+  while(i<10)
+  {
+    a[i]=rand() %100 ;
+    i++;
+  }
+  for(i=0; i<10; i++)
+  {
+    printf("%d\n",a[i]);
+  }
+}
+```
+### 25.Babble Sort on array of integer
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *25.Implement a C program to create a thread that performs bubble sort on an array of integers? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<pthread.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;                                    // Thread
+  int status=0;
+  status=pthread_create(&tid,NULL,create_thread,NULL);     // Create the thread
+  if(status != 0)
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,NULL);                          // wait for the thread to finish
+  return 0;
+}
+void *create_thread(void *arg)                                // thread function
+{
+  int a[100],n,i=0,temp,j=0;
+  printf("Enter number of elements :\n");
+  scanf("%d",&n);
+  while(i<n)
+  {
+    scanf("%d",&a[i]);
+    i++;
+  }
+  for(i=0; i<n; i++)
+  {
+    for(j=1;j<n-i; j++)
+    {
+      if(a[j]<a[j-1])
+      {
+        temp=a[j];
+        a[j]=a[j-1];
+        a[j-1]=temp;
+      }
+    }
+  }
+  for(i=0;i<n; i++)
+  {
+    printf("%d\n",a[i]);
+  }
+  pthread_exit(0);
+}
+```
+### 26.Greatest common divisor (GCD) of two numbers?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 26.Develop a C program to create a thread that calculates the greatest common divisor (GCD) of two numbers? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<pthread.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;                                    // Thread
+  int status=0;
+  status=pthread_create(&tid,NULL,create_thread,NULL);     // Create the thread
+  if(status != 0)
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,NULL);                          // wait for the thread to finish
+  return 0;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  int a,b,temp;
+  printf("Enter two numbers:");
+  scanf("%d%d",&a,&b);
+  while(b !=0)
+  {
+    temp=b;
+    b= a % b;
+    a=temp;
+  }
+  printf("%d\n",a);
+  pthread_exit(0);
+}
+```
+### 27.Sum of Fibonacci numbers up to a given limit?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 27.Write a C program to create a thread that calculates the sum of Fibonacci numbers up to a given limit? *               
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+#define MAX 100
+
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;
+  int num,status;
+  printf("Enter the Fibonacci limit(n): ");
+  scanf("%d",&num);
+  if(num <0)
+  {
+     printf("Please enter positive numbers\n" );
+     return 1;
+  }
+  status= pthread_create(&tid, NULL,create_thread, (void *)&num);
+  if(status !=0)
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid, NULL);
+  return 0;
+}
+
+
+// Thread function
+void *create_thread(void *arg)
+{
+  int num=*(int *)arg;
+  int c,a=0,b=1,sum=0;
+  if(num >=1)
+  {
+    sum =1;
+  }
+  while((c=a+b) <= num)
+  {
+    sum += c;
+    a=b;
+    b=c;
+  }
+  printf("%d\n",sum);
+  pthread_exit(NULL);
+}
+ 
+```
+### 28.Sum of even numbers from 1 to 100?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 28.Implement a C program to create a thread that calculates the sum of even numbers from 1 to 100?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<unistd.h>
+#include<pthread.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  int status;
+  pthread_t tid;                                    // Thread
+  status=pthread_create(&tid,NULL,create_thread,NULL);     // Create the thread
+  if(status !=0)
+  {
+    printf("Thread creation is failed\n");
+    return 2;
+  }
+  pthread_join(tid,NULL);                          // wait for the thread to finish
+  return 1;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  int i=2,num=100,sum=0;
+  while(i<=num)
+  {
+    if(i%2==0)
+    {
+      sum +=i;
+    }
+    i++;
+  }
+  printf("sum of square=%d\n",sum);
+  pthread_exit(0);
+}
+```
+###  29.Factorial of a given number using iteration? 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 29.Develop a C program to create a thread that calculates the factorial of a given number using iteration?  *             
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<unistd.h>
+#include<pthread.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;                   // Thread
+  int number=0;
+  number=pthread_create(&tid,NULL,create_thread,NULL);     // Create the thread
+  if(number !=0)
+  {
+    printf("thread creation is failed\n");
+    pthread_exit(0);
+  }
+  pthread_join(tid,NULL);                          // wait for the thread to finish
+  return 0;
+}
+void *create_thread(void *arg)                                // thread function
+{
+  int factorial=1,number=0,i;
+  printf("Enter Number:");
+  scanf("%d",&number);
+  if(number<0)
+  {
+    printf("only 0< values\n");
+    pthread_exit(0);
+  }
+  for(i=1;i<=number; i++)
+  {
+    factorial *= i;
+  }
+  printf("factorial=%d\n",factorial);
+}
+```
+### 30.Checks if a given year is a leap year?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 30.Write a C program to create a thread that checks if a given year is a leap year?       *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;
+  int year;
+  printf("Enter the year: ");
+  scanf("%d", &year);
+  if(year <= 0)
+  {
+     printf("Please enter Positive values\n");
+     return 1;
+  }
+  if(pthread_create(&tid, NULL,create_thread, (void *)&year) != 0)
+  {
+    printf("Thread creation is failed\n");
+    return 1;
+  }
+  pthread_join(tid, NULL);
+  return 0;
+}
+// Thread function
+void *create_thread(void *arg)
+{
+  int year=*(int *)arg;
+  if(((year%4==0) && (year%100 !=0)) || (year % 400 ==0))
+  {
+    printf("Given year is leap year\n");
+  }
+  else
+  {
+    printf("Given year is not a leap year\n");
+  }
+  pthread_exit(NULL);
 }
 ```
