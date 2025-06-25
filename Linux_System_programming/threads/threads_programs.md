@@ -1336,3 +1336,116 @@ void *create_thread(void *arg)
   pthread_exit(NULL);
 }
 ```
+### 31.Performs multiplication of two matrices? 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 31.Implement a C program to create a thread that performs multiplication of two matrices? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+
+void *create_matrices_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;
+  if(pthread_create(&tid, NULL,create_matrices_thread,NULL) != 0)
+  {
+    printf("Thread creation is failed\n");
+    return 1;
+  }
+  pthread_join(tid, NULL);
+  return 0;
+}
+
+// Thread function
+void *create_matrices_thread(void *arg)
+{
+  int arr1[10][10],arr2[10][10],i,j,n,m,mul[10][10];
+  printf("Enter number of rows and columns(<10):");
+  scanf("%d%d",&m,&n);
+  printf("Enter elements for 1st matrices\n");
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<n; j++)
+    {
+      scanf("%d",&arr1[i][j]);
+    }
+  }
+  printf("Enter elements for 2nd matrices\n");
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<n; j++)
+    {
+      scanf("%d",&arr2[i][j]);
+    }
+  }
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<n; j++)
+    {
+      mul[i][j]= (arr1[i][j]) * (arr2[i][j]);
+    }
+  }
+  for(i=0;i<m;i++)
+  {
+    for(j=0;j<n; j++)
+    {
+      printf("%d ",arr1[i][j]);
+    }
+    printf("\t");
+    for(j=0;j<n; j++)
+    {
+      printf("%d ",arr2[i][j]);
+    }
+    printf("\t");
+    for(j=0;j<n; j++)
+    {
+      printf("%d ",mul[i][j]);
+    }
+    printf("\t");
+    printf("\n");
+  }
+  pthread_exit(NULL);
+}
+```
+### 32.Calculates the average of numbers from 1 to 100?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *32.Develop a C program to create a thread that calculates the average of numbers from 1 to 100?*
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<unistd.h>
+#include<pthread.h>
+
+void *create_avg_of_numbers_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;                                                         // Thread
+  if(pthread_create(&tid,NULL,create_avg_of_numbers_thread,NULL) !=0)     // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,NULL);                                            // wait for the thread to finish
+  return 0;
+}
+
+void *create_avg_of_numbers_thread(void *arg)                                // thread function
+{
+  int i=0,num=100;
+  float avg,sum=0;
+  while(i<=num)
+  {
+    sum +=i;
+    i++;
+  }
+  avg=(sum/num);
+  printf("%.2f avg of total sum=%.1f\n",avg,sum);
+}
+```
