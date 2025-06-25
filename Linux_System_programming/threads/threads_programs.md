@@ -391,7 +391,7 @@ void *create_thread(void *arg)                                // thread function
       break;
     }
   }
-  return ptr;
+  pthread_exit(ptr);
 } 
 ```
 ### 11.Prints "Hello, World!" with thread synchronization?
