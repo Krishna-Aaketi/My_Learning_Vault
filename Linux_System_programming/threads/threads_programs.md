@@ -375,7 +375,7 @@ void *create_thread(void *arg)                                // thread function
 {
   int *ptr=(int *)malloc(sizeof(int));
   char *str=(char *)arg;
-  int len=0,i=0;
+  int len=strlen(str),i=0;
   if(ptr==NULL)
   {
     printf("Malloc failed\n");
