@@ -679,7 +679,7 @@ int main(void)
   return 0;
 }
 ```
-### 23.Create a hard link named "hardlink.txt" to a file named "source.txt"?
+### 22.Create a hard link named "hardlink.txt" to a file named "source.txt"?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 22. Develop a C program to create a hard link named "hardlink.txt" to a file named "source.txt"?  *
