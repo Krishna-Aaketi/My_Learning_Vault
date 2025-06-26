@@ -1,4 +1,4 @@
-## ---------------------------------Create Thread Programs-------------------------------
+## -----Create Thread programms------
  
 ### 1.Prints "Hello, World!"?
 ```c
@@ -28,7 +28,7 @@ void *create_thread(void *arg)                                // thread function
   return 0;
 }
 ```
-### 2.Multiple threads,each printing its own message? 
+## 2.Multiple threads,each printing its own message? 
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 2.Write a c program to create multiple threads,each printing its own message? *
@@ -80,7 +80,7 @@ void *create_thread4(void *arg)                                // thread functio
   pthread_exit(0);
 }
 ```
-### 3.Print numbers from 1 to 10 concurrently?
+## 3.Print numbers from 1 to 10 concurrently?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 3.Develop a C program to create two threads that print numbers from 1 to 10 concurrently? *
@@ -115,7 +115,7 @@ void *create_thread(void *arg)                                // thread function
 }
 
 ```
-### 4.Calculates the factorial of a given number? 
+## 4.Calculates the factorial of a given number? 
 ```c
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -155,7 +155,7 @@ void *create_thread(void *arg)                                // thread function
 } 
 
 ```
-### 5.Print their thread IDs?
+## 5.Print their thread IDs?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 5.Write a C program to create two threads that print their thread IDs?  *
@@ -184,7 +184,7 @@ void *create_thread(void *arg)                                // thread function
 } 
 
 ```
-### 6.Prints the sum of two numbers?
+## 6.Prints the sum of two numbers?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *6.Develop a C program to create a thread that prints the sum of two numbers? *
@@ -219,7 +219,7 @@ void *create_thread(void *arg)                                // thread function
   printf("sum=%d\n",(nums->a)+(nums->b));
 } 
 ```
-### 7.Calculates the square of a number?  
+## 7.Calculates the square of a number?  
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 7.Implement a C program to create a thread that calculates the square of a number?  *
@@ -248,7 +248,7 @@ void *create_thread(void *arg)                                // thread function
   printf("square=%d\n",num*num);
 } 
 ```
-### 8.Prints the current date and time?
+## 8.Prints the current date and time?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 8.Write a C program to create a thread that prints the current date and time? *
@@ -277,7 +277,7 @@ void *create_thread(void *arg)                                // thread function
   printf("time=%s\n",asctime(current_time));
 } 
 ```
-### 9.Checks if a number is prime?
+## 9.Checks if a number is prime?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 9.Develop a C program to create a thread that checks if a number is prime?    *
@@ -338,7 +338,7 @@ void *create_thread(void *arg)                                // thread function
   return ptr;
 } 
 ```
-### 10.Checks if a given string is a palindrome? 
+## 10.Checks if a given string is a palindrome? 
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  * 10.Implement a C program to create a thread that checks if a given string is a palindrome?  *
@@ -371,11 +371,11 @@ int main(void)
   return 0; 
 }
 
-void *create_thread(void *arg)                                // thread function
+void *create_thread(void *arg)                                // thread function 
 {
   int *ptr=(int *)malloc(sizeof(int));
   char *str=(char *)arg;
-  int len=strlen(str),i=0;
+  int len=0,i=0;
   if(ptr==NULL)
   {
     printf("Malloc failed\n");
@@ -384,15 +384,15 @@ void *create_thread(void *arg)                                // thread function
   *ptr=1;
   for(i=0; i<len;i++)
   {
-    if(str[i] !=str[--len])
+    if(str[i]==str[--len])
     {
       *ptr=0;
       return ptr;
       break;
     }
   }
-  pthread_exit(ptr);
-}
+  return ptr;
+} 
 ```
 ### 11.Prints "Hello, World!" with thread synchronization?
 ```c
@@ -404,26 +404,38 @@ void *create_thread(void *arg)                                // thread function
 #include<unistd.h>
 #include<pthread.h>
 
+pthread_mutex_t lock;
 void *create_thread(void *arg);
 int main(void)
 {
-  pthread_t t_id;                                             // Thread ID
-  pthread_create(&t_id,NULL,create_thread,"Hello World");     // Create the thread
+  pthread_t t_id;      // Thread ID
+  if(pthread_mutex_init(&lock,NULL)!=0)
+  {
+    printf("Mutex is failed\n");
+    return 0;
+  }
+  if(pthread_create(&t_id,NULL,create_thread,"Hello World")!=0)     // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
   pthread_join(t_id,NULL);                                    // wait for the thread to finish
-  printf("main thread id=%u\n",(unsigned int)pthread_self()); // get pthread id 
-  printf("process id=%u\n",getpid());                         // get process id 
+  printf("main thread id=%u\n",(unsigned int)pthread_self()); // get pthread id
+  printf("process id=%u\n",getpid());                         // get process id
+  pthread_mutex_destroy(&lock);
+  return 0;
 }
-
-void *create_thread(void *arg)                                // thread function 
+void *create_thread(void *arg)                                // thread function
 {
-  char *ptr=(char *)(arg);                          
+  char *ptr=(char *)(arg);
+  pthread_mutex_lock(&lock);
   printf("%s\n",ptr);
+  pthread_mutex_unlock(&lock);
   printf("process id=%u\n",getpid());                        //get process id
   return 0;
 }
-
 ```
-### 12.Print their thread IDs and synchronize their output
+## 12.Print their thread IDs and synchronize their output
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 12.Develop a C program to create two threads that print their thread IDs and synchronize their output *
@@ -460,7 +472,7 @@ void *create_thread(void *arg)                                // thread function
   pthread_mutex_unlock(&lock);
 } 
 ```
-### 13.Random numbers and synchronizes access to a shared buffer?
+## 13.Random numbers and synchronizes access to a shared buffer?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 13.Implement a C program to create a thread that generates random numbers and synchronizes access to a shared buffer? *
@@ -505,7 +517,7 @@ void *create_thread(void *arg)                                // thread function
   }
 } 
 ```
-### 14.Performs addition of two numbers with mutex locks?
+## 14.Performs addition of two numbers with mutex locks?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 14.Write a C program to create a thread that performs addition of two numbers with mutex locks? *
@@ -551,7 +563,7 @@ void *create_thread(void *arg)                                // thread function
 } 
 
 ```
-### 15.Increment and decrement a shared variable,respectively, using mutex locks?
+## 15.Increment and decrement a shared variable,respectively, using mutex locks?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 15.Implement a C program to create two threads that increment and decrement a shared variable,  *
@@ -610,7 +622,7 @@ void *create_thread2(void *arg)                                // thread functio
   }
 } 
 ```
-### 16.reads input from the user and synchronizes access to shared resources
+## 16.reads input from the user and synchronizes access to shared resources
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 16.Develop a C program to create a thread that reads input from the user and synchronizes     *
@@ -647,7 +659,7 @@ void *create_thread(void *arg)                                // thread function
   return 0;
 }
 ```
-### 17.Prints prime numbers up to a given limit with mutex locks?
+## 17.Prints prime numbers up to a given limit with mutex locks?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 17.Implement a C program to create a thread that prints prime numbers up to a given limit with mutex locks? *
@@ -706,7 +718,7 @@ void *create_thread(void *arg)                                // thread function
 } 
 
 ```
-### 18.calculates the sum of Fibonacci numbers up to a given limit mutex locks 
+## 18.calculates the sum of Fibonacci numbers up to a given limit mutex locks 
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 18.Implement a C program to create a thread that calculates the sum of              *
@@ -752,7 +764,6 @@ int main(void)
   pthread_mutex_destroy(&lock);
   return 0;
 }
-
 
 // Thread function
 void *create_thread(void *arg) 
@@ -829,9 +840,10 @@ void *create_thread(void *arg)
 ```
 ### 20.Checks if a given string is a palindrome using dynamic programming with mutex locks?
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 20.Write a C program to create a thread that checks if a given string is a palindrome using dynamic programming with mutex locks? *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 20.Write a C program to create a thread that checks if a given string is a palindrome using *
+ * dynamic programming with mutex locks?                                                       *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -980,9 +992,10 @@ void *create_thread(void *arg)                                // thread function
 ```
 ### 23.Calculates the sum of squares of numbers from 1 o 100? 
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 23.Write a C program to create a thread that calculates the sum of squares of numbers from 1 o 100? *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 23.Write a C program to create a thread that calculates the sum of                *
+ * squares of numbers from 1 o 100?                                                  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include<stdio.h>
 #include<unistd.h>
@@ -1447,5 +1460,702 @@ void *create_avg_of_numbers_thread(void *arg)                                // 
   }
   avg=(sum/num);
   printf("%.2f avg of total sum=%.1f\n",avg,sum);
+}
+
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 35.Write a C program to create a thread that calculates the sum of digits of a given number *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  int *ret=0;
+  pthread_t tid;
+  int num;
+  printf("Enter Numbers :");
+  scanf("%d",&num);
+  pthread_create(&tid,NULL,create_thread,(void *)&num);     // Create the thread
+  pthread_join(tid,(void *)&ret);                // wait for the thread to finish
+  printf("%d\n",*ret);
+  return 0;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  int *sum=(int *)malloc(sizeof(int));
+  int num=*(int *)arg,rem=0;
+  *sum=0;
+  while(num)
+  {
+    rem=num%10;
+    (*sum)=(*sum)+rem;
+    num /=10;
+  }
+  pthread_exit(sum);
+}
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 37.Develop a C program to create a thread that finds the maximum element in an array?       *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+
+struct node
+{
+  int num;
+  int arr[100];
+};
+void *create_thread(void *arg);
+
+int main(void)
+{
+  int i=0;
+  int *ret=0;
+  pthread_t tid;
+  struct node data;
+  printf("Enter Numbers :");
+  scanf("%d",&data.num);
+  printf("Enter elements:");
+  for(i=0;i<data.num;i++)
+  {
+    scanf("%d",&data.arr[i]);
+  }
+  if(pthread_create(&tid,NULL,create_thread,(void *)&data) !=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,(void *)&ret);                // wait for the thread to finish
+  printf("maximum value =%d\n",*ret);
+  free(ret);
+  return 0;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  int i=0;
+  int *temp=(int *)malloc(sizeof(int));
+  if(temp==NULL)
+  {
+    printf("malloc is failed\n");
+    pthread_exit(0);
+  }
+  struct node *data=(struct node *)arg;
+  *temp=data->arr[0];
+  for(i=0;i<data->num;i++)
+  {
+    if(*temp < data->arr[i])
+    {
+      *temp=data->arr[i];
+    }
+  }
+  pthread_exit(temp);
+}
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 40.Develop a C program to create a thread that calculates the average of numbers in an array? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+
+struct node
+{
+  int num;
+  int arr[100];
+};
+void *create_thread(void *arg);
+
+int main(void)
+{
+  int i=0;
+  float *ret=0;
+  pthread_t tid;
+  struct node data;
+  printf("Enter Numbers :");
+  scanf("%d",&data.num);
+  printf("Enter elements:");
+  for(i=0;i<data.num;i++)
+  {
+    scanf("%d",&data.arr[i]);
+  }
+  if(pthread_create(&tid,NULL,create_thread,(void *)&data) !=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,(void **)&ret);                // wait for the thread to finish
+  printf("avg of element in array =%.2f\n",*ret);
+  return 0;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  int i=0;
+  float sum=0;
+  float *temp=(float *)malloc(sizeof(float));
+  struct node *data=(struct node *)arg;
+  for(i=0;i<data->num;i++)
+  {
+    sum=sum+(data->arr[i]);
+  }
+  *temp=(sum/data->num);
+  pthread_exit(temp);
+}
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 42.Implement a C program to create a thread that checks if a number is even or odd?         *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  int *ret=0;
+  pthread_t tid;
+  int num;
+  printf("Enter Numbers :");
+  scanf("%d",&num);
+  if(pthread_create(&tid,NULL,create_thread,(void *)&num) !=0)     // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,(void *)&ret);                // wait for the thread to finish
+  if(*ret==1)
+   printf("Given number is Odd\n");
+  else
+   printf("Given number is Even\n");
+  free(ret);
+  return 0;
+}
+void *create_thread(void *arg)                                // thread function
+{
+  int *flag=(int *)malloc(sizeof(int));
+  int num=*(int *)arg,rem=0;
+  if(num%2==0)
+  {
+    *flag=0;
+  }
+  else
+  {
+    *flag=1;
+  }
+  pthread_exit(flag);
+}
+
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 43.Develop a C program to create a thread that calculates the sum of elements in an array?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+
+struct node
+{
+  int num;
+  int arr[100];
+};
+void *create_thread(void *arg);
+
+int main(void)
+{
+  int i=0;
+  int *ret=0;
+  pthread_t tid;
+  struct node data;
+  printf("Enter Numbers :");
+  scanf("%d",&data.num);
+  printf("Enter elements:");
+  for(i=0;i<data.num;i++)
+  {
+    scanf("%d",&data.arr[i]);
+  }
+  if(pthread_create(&tid,NULL,create_thread,(void *)&data) !=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,(void *)&ret);                // wait for the thread to finish
+  printf("sum =%d\n",*ret);
+  free(ret);
+  return 0;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  int i=0;
+  int *sum=(int *)malloc(sizeof(int));
+  struct node *data=(struct node *)arg;
+  for(i=0; i < data->num; i++)
+  {
+    *sum += data->arr[i];
+  }
+  pthread_exit(sum);
+}
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 44.Write a C program to create a thread that calculates the factorial of numbers from 1 to 10?*
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  int *ret=0;
+  pthread_t tid;
+  int num;
+  if(pthread_create(&tid,NULL,create_thread,NULL) !=0)     // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,(void *)&ret);                // wait for the thread to finish
+  printf("factorial of 1 to 10=%d\n",*ret);
+  free(ret);
+  return 0;
+}
+void *create_thread(void *arg)                                // thread function
+{
+  int i;
+  int *fact=(int *)malloc(sizeof(int));
+  *fact=1;
+  if(fact==NULL)
+  {
+    printf("malloc is failed\n");
+    pthread_exit(0);
+  }
+  for(i=1;i<=10;i++)
+  {
+    (*fact) = (*fact) *i;
+  }
+  pthread_exit(fact);
+}
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 48.Write a C program to create a thread that searches for a given number in an array?       *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+
+struct node
+{
+  int num;
+  int arr[10];
+  int key;
+};
+void *create_thread(void *arg);
+
+int main(void)
+{
+  int i=0;
+  int *ret=0;
+  pthread_t tid;
+  struct node data;
+  printf("Enter Numbers :");
+  scanf("%d",&data.num);
+  printf("Enter elements:");
+  for(i=0;i<data.num;i++)
+  {
+    scanf("%d",&data.arr[i]);
+  }
+  printf("Enter key Numbers :");
+  scanf("%d",&data.key);
+  if(pthread_create(&tid,NULL,create_thread,(void *)&data) !=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,(void *)&ret);     // wait for the thread to finish
+  if(*ret==0)
+  {
+    printf("given number is not present in array\n");
+  }
+  else
+  {
+    printf("given number is present in array\n");
+  }
+  free(ret);
+  return 0;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  int i=0;
+  struct node *data=(struct node *)arg;
+  int *temp=(int *)malloc(sizeof(int));
+  if(temp==NULL)
+  {
+    printf("malloc is failed\n");
+    pthread_exit(0);
+  }
+  for(i=0;i<data->num;i++)
+  {
+    if(data->key == data->arr[i])
+    {
+      *temp=1;
+      break;
+    }
+    else
+    {
+      *temp=0;
+    }
+  }
+  pthread_exit(temp);
+}
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 49.Develop a C program to create a thread that reverses a given string?     *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+#include<string.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  char str[100];
+  char *ret;
+  pthread_t tid;
+  printf("Enter string(99<):");
+  scanf("%s",str);
+  if(pthread_create(&tid,NULL,create_thread,(void *)str) !=0)     // Create the thread
+  {
+    printf("thread_creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,(void **)&ret);     // wait for the thread to finish
+  printf("%s\n",ret);
+  free(ret);
+  return 0;
+}
+void *create_thread(void *arg)                                // thread function
+{
+  char *s=(char *)malloc(sizeof(char)*100);
+  char *str=(char *)arg;
+  int len=strlen(str),i=0;
+  if(s==NULL)
+  {
+    printf("Malloc failed\n");
+    pthread_exit(0);
+  }
+  for(i=0; i<len;i++)
+  {
+    s[i]=str[len-1-i];
+  }
+  s[i]='\0';
+  pthread_exit((void *)s);
+}
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 51.Write a C program to create a thread that performs addition of two matrices?           *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+struct array
+{
+  int m;
+  int n;
+  int arr1[10][10];
+  int arr2[10][10];
+  int add[10][10];
+};
+
+void *create_matrices_thread(void *arg);
+
+int main(void)
+{
+  int i,j;
+  pthread_t tid;
+  struct array data;
+  printf("Enter number of rows and columns(<10):");
+  scanf("%d %d",&data.m,&data.n);
+  printf("Enter elements for 1st matrices\n");
+  for(i=0;i<data.m;i++)
+  {
+    for(j=0;j<data.n; j++)
+    {
+      scanf("%d",&data.arr2[i][j]);
+    }
+  }
+  if(pthread_create(&tid, NULL,create_matrices_thread,(void *)&data) != 0)
+  {
+    printf("Thread creation is failed\n");
+    return 1;
+  }
+  pthread_join(tid,NULL);
+  return 0;
+}
+
+// Thread function
+void *create_matrices_thread(void *arg)
+{
+  struct array *data=(struct array *)arg;
+  int i,j;
+  for(i=0;i<data->m;i++)
+  {
+    for(j=0;j<data->n; j++)
+    {
+      {
+      data->add[i][j]= (data->arr1[i][j]) + (data->arr2[i][j]);
+    }
+  }
+  for(i=0;i<data->m;i++)
+  {
+    for(j=0;j<data->n; j++)
+    {
+      printf("%d ",data->arr1[i][j]);
+    }
+    printf("\t");
+    for(j=0;j<data->n; j++)
+    {
+      printf("%d ",data->arr2[i][j]);
+    }
+    printf("\t");
+    for(j=0;j<data->n; j++)
+    {
+      printf("%d ",data->add[i][j]);
+    }
+    printf("\t");
+    printf("\n");
+  }
+  pthread_exit(NULL);
+}
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 52.Develop a C program to create a thread that calculates the length of a given string? *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+#include<string.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  char str[100];
+  int *len;
+  pthread_t tid;
+  printf("Enter string(99<):");
+  scanf("%s",str);
+  if(pthread_create(&tid,NULL,create_thread,(void *)str) !=0)     // Create the thread
+  {
+    printf("thread_creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,(void **)&len);     // wait for the thread to finish
+  printf("%d\n",*len);
+  free(len);
+  return 0;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  int *len=(int *)malloc(sizeof(int));
+  char *str=(char *)arg;
+  int i=0;
+  if(len==NULL)
+  {
+    printf("Malloc failed\n");
+    pthread_exit(0);
+  }
+  while(str[i])
+  {
+    i++;
+  }
+  *len=i;
+  pthread_exit((void *)len);
+}
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 53.Write a C program to create two threads using pthreads library. Each thread should print *
+ * "Hello, World!" along with its thread ID?                                                   *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<unistd.h>
+#include<pthread.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid1,tid2;                                             // Thread ID
+  if(pthread_create(&tid1,NULL,create_thread,"thread_1_hello_world")!= 0)     // Create the thread
+  {
+    printf("thread 1 creation is failed\n");
+    return 0;
+  }
+  if(pthread_create(&tid2,NULL,create_thread,"thread_2_hello_world")!= 0)     // Create the thread
+  {
+    printf("thread 2 creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid1,NULL);                          // wait for the thread to finish
+  pthread_join(tid2,NULL);                          // wait for the thread to finish
+  printf("main thread id=%u\n",(unsigned int)pthread_self()); // get pthread id
+  printf("process id=%u\n",getpid());    // get process id
+  return 0;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  char *str=(void *)(arg);
+  printf("%s and id=%u\n",str,(unsigned int)pthread_self()); // get pthread id
+}
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 55.Write a C program to demonstrate thread synchronization using mutex locks. Create two        *
+ * threads that increment a shared variable using mutex locks to ensure proper synchronization?    *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<unistd.h>
+#include<pthread.h>
+
+pthread_mutex_t lock;
+int num=10;
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid1,tid2;                                     // Thread
+  if(pthread_mutex_init(&lock,NULL) !=0 )
+  {
+    printf("mutex is failed\n");
+    return 17;
+  }
+  if(pthread_create(&tid1,NULL,create_thread,"increment_Thread1")!=0)     // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  if(pthread_create(&tid2,NULL,create_thread,"increment_Thread2")!=0)     // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid1,NULL);                          // wait for the thread to finish
+  pthread_join(tid2,NULL);
+  pthread_mutex_destroy(&lock);
+  return 0;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  int i=0;
+  char *str=(char *)arg;
+  while(i<10)
+  {
+    pthread_mutex_lock(&lock);
+    printf("%s:%d\n",str,num++);
+    pthread_mutex_unlock(&lock);
+    i++;
+  }
+}
+```
+###
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 56.Write a C program to demonstrate thread synchronization using semaphore. Create two          *
+ * threads that increment a shared variable using mutex locks to ensure proper synchronization?    *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<semaphore.h>
+#include<pthread.h>
+
+sem_t sem;
+int num=10;
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid1,tid2;                                     // Thread
+  if(sem_init(&sem,0,1) !=0 )
+  {
+    printf("semaphore is failed\n");
+    return 17;
+  }
+  if(pthread_create(&tid1,NULL,create_thread,"increment_Thread1")!=0)     // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 10;
+  }
+  if(pthread_create(&tid2,NULL,create_thread,"increment_Thread2")!=0)     // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 7;
+  }
+  pthread_join(tid1,NULL);                          // wait for the thread to finish
+  pthread_join(tid2,NULL);
+  sem_destroy(&sem);
+  return 6;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  int i=0;
+  char *str=(char *)arg;
+  while(i<10)
+  {
+    sem_wait(&sem);
+    printf("%s:%d\n",str,num++);
+    sem_post(&sem);
+    i++;
+  }
 }
 ```
