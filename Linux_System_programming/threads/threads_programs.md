@@ -1,4 +1,4 @@
-## ---------------------------Create Threads programms-------------------------------------------
+## ----------------------Create Thread programms------
  
 ### 1.Prints "Hello, World!"?
 ```c
@@ -13,11 +13,15 @@
 void *create_thread(void *arg);
 int main(void)
 {
-  pthread_t t_id;                                             // Thread ID
-  pthread_create(&t_id,NULL,create_thread,"Hello World");     // Create the thread
-  pthread_join(t_id,NULL);                                    // wait for the thread to finish
-  printf("main thread id=%u\n",(unsigned int)pthread_self()); // get pthread id
-  printf("process id=%u\n",getpid());                         // get process id
+  pthread_t t_id;                                               // Thread ID
+  if(pthread_create(&t_id,NULL,create_thread,"Hello World")!=0)     // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(t_id,NULL);                                      // wait for the thread to finish
+  printf("main thread id=%u\n",(unsigned int)pthread_self());   // get pthread id
+  printf("process id=%u\n",getpid());                           // get process id
 }
 
 void *create_thread(void *arg)                                // thread function
@@ -45,10 +49,26 @@ void *create_thread4(void *arg);
 int main(void)
 {
   pthread_t tid1,tid2,tid3,tid4;                    // Threads ID
-  pthread_create(&tid1,NULL,create_thread1,NULL);   // Create the thread
-  pthread_create(&tid2,NULL,create_thread2,NULL);     
-  pthread_create(&tid3,NULL,create_thread3,NULL);     
-  pthread_create(&tid4,NULL,create_thread4,NULL);     
+  if(pthread_create(&tid1,NULL,create_thread1,NULL)!=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  if(pthread_create(&tid2,NULL,create_thread2,NULL)!=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  if(pthread_create(&tid3,NULL,create_thread3,NULL)!=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  if(pthread_create(&tid4,NULL,create_thread4,NULL)!=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }    
   pthread_join(tid1,NULL);                          //wait for the thread to finish
   pthread_join(tid2,NULL);                            
   pthread_join(tid3,NULL);                           
@@ -95,10 +115,18 @@ void *create_thread(void *arg);
 int main(void)
 {
   pthread_t tid1,tid2;                                             // Thread ID
-  pthread_create(&tid1,NULL,create_thread,"thread_1");     // Create the thread
-  pthread_create(&tid2,NULL,create_thread,"thread_2");     // Create the thread
-  pthread_join(tid1,NULL);                          // wait for the thread to finish
-  pthread_join(tid2,NULL);                          // wait for the thread to finish
+  if(pthread_create(&tid1,NULL,create_thread,"thread_1")!=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  if(pthread_create(&tid2,NULL,create_thread,"thread_2")!=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid1,NULL);                               // wait for the thread to finish
+  pthread_join(tid2,NULL);                              // wait for the thread to finish
   printf("main thread id=%u\n",(unsigned int)pthread_self()); // get pthread id 
   printf("process id=%u\n",getpid());    // get process id
   return 0; 
@@ -132,7 +160,11 @@ int main(void)
 {
   pthread_t tid;                   // Thread
   int number=0;
-  pthread_create(&tid,NULL,create_thread,NULL);     // Create the thread
+  if(pthread_create(&tid,NULL,create_thread,NULL)!=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
   pthread_join(tid,NULL);                          // wait for the thread to finish
   return 0; 
 }
@@ -170,8 +202,16 @@ void *create_thread(void *arg);
 int main(void)
 {
   pthread_t tid1,tid2;                               // Thread
-  pthread_create(&tid1,NULL,create_thread,"Thread_1");     // Create the thread
-  pthread_create(&tid2,NULL,create_thread,"Thread_2");     // Create the thread
+  if(pthread_create(&tid1,NULL,create_thread,"thread_1")!=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
+  if(pthread_create(&tid2,NULL,create_thread,"thread_2")!=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
   pthread_join(tid1,NULL);                          // wait for the thread to finish
   pthread_join(tid2,NULL);                          // wait for the thread to finish
   return 0; 
@@ -208,7 +248,11 @@ int main(void)
   pthread_t tid;                                    // Thread
   printf("Enter Numbers :");
   scanf("%d%d",&nums.a,&nums.b);
-  pthread_create(&tid,NULL,create_thread,(void *)&nums);     // Create the thread
+  if(pthread_create(&tid,NULL,create_thread,(void *)&nums)!=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
   pthread_join(tid,NULL);                          // wait for the thread to finish
   return 0; 
 }
@@ -237,7 +281,11 @@ int main(void)
   int num;
   printf("Enter Numbers :");
   scanf("%d",&num);
-  pthread_create(&tid,NULL,create_thread,(void *)&num);     // Create the thread
+  if(pthread_create(&tid,NULL,create_thread,(void *)&num)!=0)   // Create the thread
+  {
+    printf("thread creation is failed\n");
+    return 0;
+  }
   pthread_join(tid,NULL);                          // wait for the thread to finish
   return 0; 
 }
