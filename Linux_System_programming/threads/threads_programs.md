@@ -1463,7 +1463,7 @@ void *create_avg_of_numbers_thread(void *arg)                                // 
 }
 
 ```
-###
+### 35.Calculates the sum of digits of a given number
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 35.Write a C program to create a thread that calculates the sum of digits of a given number *
@@ -1502,7 +1502,7 @@ void *create_thread(void *arg)                                // thread function
   pthread_exit(sum);
 }
 ```
-###
+### 37.Finds the maximum element in an array?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 37.Develop a C program to create a thread that finds the maximum element in an array?       *
@@ -1564,7 +1564,7 @@ void *create_thread(void *arg)                                // thread function
   pthread_exit(temp);
 }
 ```
-###
+### 40.Calculates the average of numbers in an array?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 40.Develop a C program to create a thread that calculates the average of numbers in an array? *
@@ -1618,7 +1618,7 @@ void *create_thread(void *arg)                                // thread function
   pthread_exit(temp);
 }
 ```
-###
+### 42.Checks if a number is even or odd?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 42.Implement a C program to create a thread that checks if a number is even or odd?         *
@@ -1666,7 +1666,7 @@ void *create_thread(void *arg)                                // thread function
 }
 
 ```
-###
+### 43.Calculates the sum of elements in an array? 
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 43.Develop a C program to create a thread that calculates the sum of elements in an array?  *
@@ -1719,7 +1719,7 @@ void *create_thread(void *arg)                                // thread function
   pthread_exit(sum);
 }
 ```
-###
+### 44.Calculates the factorial of numbers from 1 to 10?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 44.Write a C program to create a thread that calculates the factorial of numbers from 1 to 10?*
@@ -1763,7 +1763,7 @@ void *create_thread(void *arg)                                // thread function
   pthread_exit(fact);
 }
 ```
-###
+### 48.Searches for a given number in an array?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 48.Write a C program to create a thread that searches for a given number in an array?       *
@@ -1839,7 +1839,7 @@ void *create_thread(void *arg)                                // thread function
   pthread_exit(temp);
 }
 ```
-###
+### 49.Reverses a given string? 
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 49.Develop a C program to create a thread that reverses a given string?     *
@@ -1887,7 +1887,7 @@ void *create_thread(void *arg)                                // thread function
   pthread_exit((void *)s);
 }
 ```
-###
+### 51.Performs addition of two matrices?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 51.Write a C program to create a thread that performs addition of two matrices?           *
@@ -1967,7 +1967,7 @@ void *create_matrices_thread(void *arg)
   pthread_exit(NULL);
 }
 ```
-###
+### 52.calculates the length of a given string?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 52.Develop a C program to create a thread that calculates the length of a given string? *
@@ -2016,7 +2016,7 @@ void *create_thread(void *arg)                                // thread function
   pthread_exit((void *)len);
 }
 ```
-###
+### 53.Each thread should print "Hello, World!" along with its thread ID
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 53.Write a C program to create two threads using pthreads library. Each thread should print *
@@ -2055,7 +2055,7 @@ void *create_thread(void *arg)                                // thread function
   printf("%s and id=%u\n",str,(unsigned int)pthread_self()); // get pthread id
 }
 ```
-###
+### 55.Create two threads that increment a shared variable using mutex locks
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 55.Write a C program to demonstrate thread synchronization using mutex locks. Create two        *
@@ -2107,7 +2107,7 @@ void *create_thread(void *arg)                                // thread function
   }
 }
 ```
-###
+### 56.Create two threads that increment a shared variable using semaphore.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 56.Write a C program to demonstrate thread synchronization using semaphore. Create two          *
