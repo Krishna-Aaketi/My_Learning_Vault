@@ -376,6 +376,7 @@ int main(void)
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
+#inlcude <sys/wait.h>
 
 int main(void)
 {
