@@ -153,7 +153,7 @@ int main(void)
   return 0;
 }
 ```
-### 6.Count number of bits in give number
+### 7.Count number of bits in give number
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * write a c program count number of bits in give number       *
@@ -199,13 +199,13 @@ int main(void)
 }
 #endif
 ```
-### 7.
+### 8.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Write a c program to interchange the first 4bits with next 4bits bytes in 32 bit Integer Variable *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 ```
-### 8.Given number is even or odd
+### 9.Given number is even or odd
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  * write a c program to given number is even or odd      *
@@ -229,7 +229,7 @@ int main(void)
     return 0;
 }
 ```
-### 9.Given number is power of 2 or not 
+### 10.Given number is power of 2 or not 
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * write a c program to check power of 2 or not in given number  *
