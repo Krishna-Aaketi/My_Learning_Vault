@@ -90,7 +90,7 @@ int main(void)
 }
 #endif
 ```
-###
+### 3.Handle the SIGSEGV signal (segmentation fault)
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 7. Implement a program to handle the SIGSEGV signal (segmentation fault)  *
