@@ -71,7 +71,7 @@ int main(void)
 }
 
 ```
-###
+### 3.Create a child process using fork() and print its PID.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 10.Write a program in C to create a child process using fork() and print its PID. *
@@ -109,12 +109,11 @@ int main(void)
   return 0;
 }
 ```
-###
+### 4.multiple child processes using fork() and display their PIDs.
 ```c
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * 15. Write a C program to create multiple child processes using fork() *
- * and display their PIDs.                                               *
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+ * 15. Write a C program to create multiple child processes using fork() and display their PIDs. *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #include<stdio.h>
 #include<unistd.h>
@@ -151,7 +150,7 @@ int main(void)
   return 0;
 }
 ```
-###
+### 5.create a zombie process and explain how to avoid it.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 19. Write a program in C to create a zombie process and explain how to avoid it.*
@@ -221,7 +220,7 @@ int main(void)
 }
 #endif
 ```
-###
+### 6.The use of the waitpid() function for process synchronization
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 22. Write a C program to demonstrate the use of the waitpid() function for process synchronization  *
@@ -272,7 +271,7 @@ int main(void)
   return 0;
 }
 ```
-###
+### 7.daemon process.
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 25. Write a program in C to create a daemon process.  *
@@ -323,7 +322,7 @@ int main(void)
   return 0;
 }
 ```
-### 
+### 8.The use of the system() function for executing shell  commands
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 28. Write a C program to demonstrate the use of the system() function for executing shell  commands.*
@@ -366,7 +365,7 @@ int main(void)
   return 0;
 }
 ```
-###
+### 9.Pass arguments to the child process
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 32. Write a C program to create a process using fork() and pass arguments to the child process. *
@@ -376,7 +375,7 @@ int main(void)
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
-#inlcude <sys/wait.h>
+#include <sys/wait.h>
 
 int main(void)
 {
@@ -412,7 +411,7 @@ int main(void)
   return 0;
 }
 ```
-###
+### 10.Process synchronization using semaphores
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * 35.Write a program in C to demonstrate process synchronization using semaphores.*
