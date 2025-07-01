@@ -39,7 +39,7 @@ void handle_sigint(int sig)
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #if 0
-// Receiver
+// Sender
 #include <stdio.h>
 #include <signal.h>
 #include <stdlib.h>
@@ -65,7 +65,7 @@ void send_signal(int sig)
 #endif
 
 #if 1
-// Sender
+// Receiver
 #include <stdio.h>
 #include <signal.h>
 #include <stdlib.h>
