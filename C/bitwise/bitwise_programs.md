@@ -229,7 +229,7 @@ int main(void)
     return 0;
 }
 ```
-### 9.given number is power of 2 or not 
+### 9.Given number is power of 2 or not 
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * write a c program to check power of 2 or not in given number  *
