@@ -405,7 +405,11 @@ int main(void)
   pthread_t tid;
   printf("Enter string(99<):");
   scanf("%s",str);
-  pthread_create(&tid,NULL,create_thread,(void *)str);     // Create the thread
+  if(pthread_create(&tid,NULL,create_thread,(void *)str)!=0)     // Create the thread
+  {
+    printf("thread Creation is failed\n");
+    return 7;
+  }
   pthread_join(tid,(void **)&flag);                      // wait for the thread to finish
   if(*flag==0)
   {
