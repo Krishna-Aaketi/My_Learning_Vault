@@ -1513,7 +1513,106 @@ void *create_avg_of_numbers_thread(void *arg)                                // 
   avg=(sum/num);
   printf("%.2f avg of total sum=%.1f\n",avg,sum);
 }
+```
+### 33.Generates a random string?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 33.Implement a C program to create a thread that generates a random string?   *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<pthread.h>
+#include<time.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;
+  char str[100];
+  char *ret;
+  printf("Enter characters:");
+  scanf("%s",str);
+  if(pthread_create(&tid,NULL,create_thread,(void *)str)!=0)   // Create the thread
+  {
+    perror("thread creation is failed\n");
+    return 0;
+  }
+  if(pthread_join(tid,(void **)&ret) != 0 )    // wait for the thread to finish
+  {
+    printf("Join is failed\n");
+    return 2;
+  }
+  printf("the random string is %s\n",ret);
+  free(ret);
+  return 0;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  char *ptr=malloc(sizeof(char)*11);
+  char *str;
+  int size,i=0,len=10;
+  if(ptr==NULL)
+  {
+    printf("Malloc is failed\n");
+    pthread_exit(NULL);
+  }
+  str=(char *)arg;
+  size=strlen(str);
+  srand(time(NULL));                          // Seed the random number generator
+  for(i=0; i< len; i++)
+  {
+    *(ptr+i)=str[rand() % size];
+  }
+  *(ptr+i)='\0';
+  pthread_exit(ptr);
+}         
+```
+### 34.Checks if a given number is a perfect square?
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 34.Write a C program to create a thread that checks if a given number is a perfect square?  *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include<stdio.h>
+#include<unistd.h>
+#include<pthread.h>
+
+void *create_thread(void *arg);
+
+int main(void)
+{
+  pthread_t tid;
+  int num,ret;
+  printf("Enter Numbers :");
+  scanf("%d",&num);
+  if(pthread_create(&tid,NULL,create_thread,(void *)&num)!=0)   // Create the thread
+  {
+    perror("thread creation is failed\n");
+    return 0;
+  }
+  pthread_join(tid,&ret);    // wait for the thread to finish
+  if(ret != 0)
+    printf ("Given number is not perfect\n");
+  else
+    printf("Given number is perfect\n");
+  return 0;
+}
+
+void *create_thread(void *arg)                                // thread function
+{
+  int *
+  int num=*(int *)arg;
+  if(num<=0)
+  {
+    printf("Enter valid number\n");
+    pthread_exit(7);
+  }
+  pthread_exit(num & (num-1));
+}
 ```
 ### 35.Calculates the sum of digits of a given number
 ```c
