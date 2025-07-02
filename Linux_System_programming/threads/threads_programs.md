@@ -1654,6 +1654,68 @@ void *create_thread(void *arg)                                // thread function
   pthread_exit(sum);
 }
 ```
+### 36.Factorial of a given number using recursion 
+```c
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * 36.Implement a C program to create a thread that calculates the factorial of a given number *
+ * using recursion                                                                             *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+void *create_thread(void *arg);
+
+long long fact(int n)
+{
+    if (n == 1 || n == 0 )
+    {
+      return 1;
+    }
+    return n * fact(n - 1);
+}
+
+int main(void)
+{
+  pthread_t tid;
+  int num;
+  long long *result;
+  printf("Enter a positive number: ");
+  scanf("%d", &num);
+  if(num < 0)
+  {
+    printf("Factorial not defined for negative numbers.\n");
+    return 1;
+  }
+  if(pthread_create(&tid, NULL, create_thread, (void *)&num) != 0)
+  {
+    perror("Thread creation failed");
+    return 2;
+  }
+  if(pthread_join(tid, (void **)&result) != 0)
+  {
+    perror("Thread join failed");
+    return 3;
+  }
+  printf("Factorial of %d is %lld\n", num, *result);
+  free(result);
+  return 0;
+}
+
+void *create_thread(void *arg)
+{
+  int num = *(int *)arg;
+  long long *res = malloc(sizeof(long long));
+  if (res == NULL)
+  {
+    perror("Memory allocation failed");
+    pthread_exit(NULL);
+  }
+  *res = fact(num);
+   pthread_exit(res);
+}          
+```
 ### 37.Finds the maximum element in an array?
 ```c
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
