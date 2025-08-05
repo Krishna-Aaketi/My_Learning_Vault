@@ -254,6 +254,162 @@ CFLAGS += -g
 | disas           | Show disassembly              |
 
 
+
+# 🔧 Core GDB Commands – Complete Guide
+
+## 📦 1. Program Loading and Execution
+
+| Command | Description |
+|--------|-------------|
+| `file <binary>` | Load the specified binary file |
+| `run [args]` | Start program execution with optional arguments |
+| `start` | Run program and stop at the beginning of `main()` |
+| `kill` | Terminate running program |
+| `restart` | Restart program from the beginning |
+| `set args <args>` | Set command-line arguments for the program |
+| `show args` | Show currently set arguments |
+| `quit` or `q` | Exit GDB |
+
+## 🔥 2. Breakpoints and Watchpoints
+
+| Command | Description |
+|--------|-------------|
+| `break <location>` or `b` | Set a breakpoint at function/line |
+| `break +<N>` | Breakpoint N lines forward |
+| `tbreak <location>` | Temporary breakpoint |
+| `condition <num> <cond>` | Add condition to a breakpoint |
+| `delete [<num>]` | Delete breakpoints |
+| `disable [<num>]` | Disable a breakpoint |
+| `enable [<num>]` | Enable a breakpoint |
+| `info break` | Show all breakpoints |
+| `watch <var>` | Watchpoint on variable |
+| `rwatch <var>` | Read access watchpoint |
+| `awatch <var>` | Read/write watchpoint |
+
+## 🧭 3. Program Navigation / Stepping
+
+| Command | Description |
+|--------|-------------|
+| `next` or `n` | Step over (line by line) |
+| `step` or `s` | Step into functions |
+| `finish` | Run until current function returns |
+| `continue` or `c` | Resume execution |
+| `until` | Run until a greater line number |
+| `return [value]` | Return from current function |
+| `jump <location>` | Jump to a line/function |
+
+## 🔍 4. Inspecting Code and Data
+
+| Command | Description |
+|--------|-------------|
+| `list [<location>]` or `l` | Show source code |
+| `print <expr>` or `p` | Print variable or expression |
+| `set var <var> = <value>` | Change variable value |
+| `x/<fmt> <address>` | Examine memory |
+| `info locals` | Local variables |
+| `info args` | Function arguments |
+| `info variables` | Global/static variables |
+| `info functions` | List all functions |
+| `ptype <var>` | Type of a variable |
+| `whatis <expr>` | Type of expression |
+
+## 🧠 5. Memory and Registers
+
+| Command | Description |
+|--------|-------------|
+| `x/<N><f> <addr>` | Examine memory (e.g. `x/4x &a`) |
+| `info registers` | Show CPU registers |
+| `info address <var>` | Address of variable |
+| `set $reg = value` | Set register value |
+| `print $reg` | Print register value |
+
+### Memory Formats:
+- `x` – Hex
+- `d` – Decimal
+- `u` – Unsigned
+- `o` – Octal
+- `t` – Binary
+- `f` – Float
+- `s` – String
+- `c` – Char
+- `i` – Instruction
+
+## 🧵 6. Call Stack and Frames
+
+| Command | Description |
+|--------|-------------|
+| `backtrace` or `bt` | Show call stack |
+| `bt full` | Call stack with vars |
+| `frame [n]` | Select stack frame |
+| `info frame` | Info about frame |
+| `up` | Move up call stack |
+| `down` | Move down call stack |
+
+## 🧶 7. Thread and Process Debugging
+
+| Command | Description |
+|--------|-------------|
+| `info threads` | List all threads |
+| `thread <n>` | Switch thread |
+| `thread apply all <cmd>` | Run cmd on all threads |
+| `break <file>:<line> thread <n>` | Breakpoint in thread |
+
+## 🛠 8. Disassembly and ASM Debugging
+
+| Command | Description |
+|--------|-------------|
+| `disassemble` | Disassemble function |
+| `x/i <address>` | Instruction at address |
+| `layout asm` | Assembly TUI layout |
+| `layout src` | Source code view |
+
+## ⚠ 9. Signal Handling
+
+| Command | Description |
+|--------|-------------|
+| `handle <signal> <action>` | How GDB handles signals |
+
+## ⚙ 10. Misc and Configuration
+
+| Command | Description |
+|--------|-------------|
+| `set pagination off` | Disable pagination |
+| `set print pretty on` | Pretty-print structs |
+| `set confirm off` | No confirmation |
+| `set logging on` | Log to file |
+| `set logging file <file>` | Set log file |
+| `source <file>` | Load GDB script |
+| `define <name>` | Define command |
+| `help [command]` | Help for command |
+
+## 🌐 11. Remote Debugging
+
+| Command | Description |
+|--------|-------------|
+| `target remote <ip>:<port>` | Connect to gdbserver |
+| `set sysroot <path>` | Set remote sysroot |
+| `load` | Load binary to target |
+
+## 🖥 12. Scripting and Automation
+
+| Command | Description |
+|--------|-------------|
+| `-x <file>` | Run script |
+| `.gdbinit` | Init file |
+| `shell <cmd>` | Run shell command |
+| `echo` | Print from script |
+
+## 🖼 13. TUI Mode
+
+| Command | Description |
+|--------|-------------|
+| `gdb -tui` | Start in TUI mode |
+| `Ctrl+X A` | Toggle TUI |
+| `layout src/asm` | Change view |
+| `refresh` | Redraw screen |
+
+
+
 # GDB (GNU Debugger) Interview Questions and Answers
 
 ## 1. What is GDB?
