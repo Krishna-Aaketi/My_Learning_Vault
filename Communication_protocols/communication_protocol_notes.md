@@ -41,8 +41,6 @@ It ensures that data is sent, received, and understood correctly, just like lang
   👉 Example: **Wi-Fi** handles hundreds of users by managing channels and access rules.  
 
 ---
-  
-<img width="624" height="636" alt="ChatGPT Image Aug 16, 2025, 01_57_15 PM" src="https://github.com/user-attachments/assets/a7e2b37f-cb8a-4c95-ad05-5bdd975a5900" />
 
 ❌ Without protocols → Communication would be chaotic, and data may be lost or misread.
 
@@ -63,6 +61,60 @@ It ensures that data is sent, received, and understood correctly, just like lang
 - **Receiver opens and reads** = Decoding  
 
 ---
+# 🔹 How Communication Protocols Work
+
+Communication between devices follows multiple steps to ensure **data integrity, synchronization, and reliability**.
+
+---
+
+## ⚙️ Process Flow
+
+- **Encoding & Framing** → Message is broken into packets/frames, encoded into bits with headers (address, type, size).  
+- **Transmission** → Bits travel via medium (cable, radio waves, fiber) using rules like timing, speed, and voltage levels.  
+- **Synchronization** → Sender & receiver align clocks/baud rates so data isn’t misread.  
+- **Reception** → Receiver collects packets in the correct order.  
+- **Decoding** → Packets are interpreted back into meaningful data (text, file, voice).  
+- **Error Detection & Correction** → Checksums/CRC verify integrity; corrupted data is resent.  
+- **Acknowledgment** → Receiver sends **ACK/NACK** to confirm delivery.  
+- **Flow Control** → Prevents sender from overwhelming slower receiver (e.g., stop-and-wait, sliding window).  
+- **Session Management** → Connection setup, maintenance, and termination handled (handshakes, teardown).  
+
+---
+
+# 🔹 OSI Model & Protocol Functions
+
+The **OSI (Open Systems Interconnection) Model** breaks communication into **7 layers**, each with a role.
+
+### 7. Application Layer  
+- **Role:** User data (message, file, video) is generated.  
+- **Example:** HTTP request, Email, Chat message.  
+
+### 6. Presentation Layer  
+- **Role:** Data is formatted, compressed, encrypted if needed.  
+- **Example:** JPEG, MP3, SSL/TLS encryption.  
+
+### 5. Session Layer  
+- **Role:** Establishes, maintains, and terminates communication session.  
+- **Example:** Login session, video call session.  
+
+### 4. Transport Layer  
+- **Role:** Breaks data into segments, adds port numbers, ensures reliability.  
+- **Example:** **TCP** (reliable, ACK/NACK), **UDP** (faster, no ACK).  
+
+### 3. Network Layer  
+- **Role:** Adds logical addressing (IP), decides best path (routing).  
+- **Example:** IP packets, Routers.  
+
+### 2. Data Link Layer  
+- **Role:** Frames the packet, adds MAC address, checks for errors (CRC).  
+- **Example:** Ethernet, Wi-Fi frame.  
+
+### 1. Physical Layer  
+- **Role:** Converts bits into signals (electrical, light, radio) across medium.  
+- **Example:** Copper wire, Fiber optic, Wireless signals.  
+
+---
+
 
 ## 🔹 Types of Communication Protocols
 
