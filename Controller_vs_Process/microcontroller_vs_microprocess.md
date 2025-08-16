@@ -93,7 +93,35 @@ Most MCUs are built on **Harvard Architecture** (separate memory for program & d
 ## 👉 In One Line
 A **microcontroller** is a **self-contained, low-power mini-computer on a chip**, designed to control **specific devices/applications in real-time**.  
 
+# 🔹 Microprocessor (MPU) – Detailed Explanation
 
+---
+
+## 1. Definition
+A **microprocessor** is the **CPU (Central Processing Unit) on a single chip**.  
+Unlike a microcontroller, it does **not have memory, timers, or I/O built-in**.  
+👉 To make it useful, it requires **external RAM, ROM, and I/O devices** connected to it.  
+
+---
+
+## 2. Architecture
+Most modern microprocessors use **Von Neumann architecture** (program + data stored in the same memory).  
+They are designed for **general-purpose computing** and **high-speed data processing**.  
+
+### Typical Microprocessor System Block Diagram
+```java
+   --------------------
+   |  Microprocessor  |
+   |   (CPU core)     |
+   --------------------
+           |
+ -------------------------------
+| External RAM (Data memory)    |
+| External ROM/Storage (Program)|
+| I/O Controllers (USB, GPU)    |
+| Other Peripherals             |
+ -------------------------------
+```
 
 <img width="400" height="400" alt="ChatGPT Image Aug 16, 2025, 12_22_06 PM" src="https://github.com/user-attachments/assets/5e167ef8-d8e0-4bf2-9ae5-dea82461072f" />
 
