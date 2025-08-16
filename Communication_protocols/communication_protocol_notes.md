@@ -15,7 +15,9 @@ It ensures that data is sent, received, and understood correctly, just like lang
 - **Error Handling** – Detects and corrects transmission errors.  
 - **Synchronization** – Sender and receiver agree on speed, timing, and format.  
 - **Compatibility** – Devices from different manufacturers can work together.  
-- **Efficiency** – Defines how much data can be sent, when, and how fast.  
+- **Efficiency** – Defines how much data can be sent, when, and how fast.
+-  
+<img width="524" height="536" alt="ChatGPT Image Aug 16, 2025, 01_57_15 PM" src="https://github.com/user-attachments/assets/a7e2b37f-cb8a-4c95-ad05-5bdd975a5900" />
 
 ❌ Without protocols → Communication would be chaotic, and data may be lost or misread.
 
