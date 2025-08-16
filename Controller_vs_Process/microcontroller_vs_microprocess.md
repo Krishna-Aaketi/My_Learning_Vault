@@ -95,5 +95,5 @@ A **microcontroller** is a **self-contained, low-power mini-computer on a chip**
 
 
 
-<img width="1536" height="1024" alt="ChatGPT Image Aug 16, 2025, 12_22_06 PM" src="https://github.com/user-attachments/assets/5e167ef8-d8e0-4bf2-9ae5-dea82461072f" />
+<img width="1000" height="800" alt="ChatGPT Image Aug 16, 2025, 12_22_06 PM" src="https://github.com/user-attachments/assets/5e167ef8-d8e0-4bf2-9ae5-dea82461072f" />
 
