@@ -192,8 +192,19 @@ git branch -M main
 # share via bare repo on server:
 git clone --bare . /srv/git/myrepo.git
 # collaborators add remote over SSH
+```
+### GitHub Fork & PR
+```bash
+# create repo on GitHub first
+git remote add origin git@github.com:org/app.git
+git push -u origin main
 
-
+git checkout -b feat/login
+# ...make changes...
+git commit -m "feat: login page"
+git push -u origin feat/login
+# open PR on GitHub, get reviews/checks → merge
+```
 # Git vs GitHub – Interview Points
 
 ## 🔹 Basic Questions
