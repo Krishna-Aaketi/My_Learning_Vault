@@ -205,6 +205,11 @@ git commit -m "feat: login page"
 git push -u origin feat/login
 # open PR on GitHub, get reviews/checks → merge
 ```
+## 🔹 17. Mental Model TL;DR
+
+- **Git** = database of file snapshots + commands to manipulate history.  
+- **GitHub** = collaboration layer: reviews, policies, automation, and visibility around that database.  
+
 # Git vs GitHub – Interview Points
 
 ## 🔹 Basic Questions
@@ -258,3 +263,72 @@ A feature of GitHub (not Git) for merging code collaboratively.
 
 **Q11. Can Git be used without GitHub in a corporate environment?**  
 Yes. Companies often host private Git servers (GitLab, Bitbucket, or self-hosted Git).  
+
+### Interview-Focused Deep Questions (with crisp answers)
+
+**Q1. Git vs GitHub in one line?**  
+- Git tracks code history; GitHub orchestrates collaboration and automation around Git.  
+
+**Q2. What does `git commit` store that a PR does not?**  
+- A commit stores a snapshot + metadata in your local repo.  
+- A PR is platform metadata that references commits and hosts discussion/reviews.  
+
+**Q3. How does Git represent a merge?**  
+- As a commit with multiple parents; history remains a DAG.  
+
+**Q4. merge vs rebase — and how GitHub policies affect them?**  
+- `merge`: preserves branch topology.  
+- `rebase`: rewrites history for linearity.  
+- GitHub can enforce “linear history” (no merges) or allow both.  
+
+**Q5. fetch vs pull?**  
+- `fetch`: download remote refs (working tree unchanged).  
+- `pull`: `fetch` + `merge` (or `rebase` if configured).  
+
+**Q6. Fast-forward vs non-fast-forward push?**  
+- **FF push**: moves a ref ahead with no divergence.  
+- **Non-FF**: rewrites remote history; typically blocked on protected branches.  
+
+**Q7. How do you recover from mistakes?**  
+- Use `git reflog` to find previous states, then `git reset` or `git revert`.  
+
+**Q8. What are remote-tracking branches?**  
+- Local refs (e.g., `origin/main`) that mirror remote state; updated on fetch/pull.  
+
+**Q9. Why use CODEOWNERS?**  
+- Auto-request reviews from domain owners; enforce required approvals before merge.  
+
+**Q10. How does Git LFS change storage?**  
+- Commits store **pointers**; large content is fetched from LFS storage.  
+
+**Q11. What is a bare repository and why use it?**  
+- Repo without working tree (`*.git`).  
+- Used on servers/remotes for central push/pull.  
+
+**Q12. Can you sign commits and why would GitHub care?**  
+- Yes (GPG/SSH). GitHub can require verified signatures to ensure authorship integrity.  
+
+**Q13. When do you prefer squash-merge?**  
+- To keep `main` linear and place a single curated commit per PR (reduces noise).  
+
+**Q14. How to enforce quality gates?**  
+- Branch protection: required CI checks, required reviews, dismiss stale reviews, push restrictions.  
+
+**Q15. How to avoid secrets leaking?**  
+- Pre-commit scanners, `git update-index --assume-unchanged` for local `.env`, GitHub secret scanning, rotate if leaked.  
+
+**Q16. What happens on `git push origin HEAD:refs/heads/feature`?**  
+- Push current local `HEAD` to remote branch named `feature`.  
+
+**Q17. Difference between fork and clone?**  
+- **Fork**: new repo on GitHub under your account.  
+- **Clone**: local copy of an existing repo.  
+
+**Q18. How do you link Issues and PRs?**  
+- Use closing keywords in PR descriptions (`Fixes #123`) or reference issues in commits/PRs.  
+
+**Q19. Monorepo tips?**  
+- Sparse checkout, partial clone, per-directory CODEOWNERS, path-based CI.  
+
+**Q20. When to avoid rebase?**  
+- On public/shared branches after others have pulled — rewriting history causes pain.  
