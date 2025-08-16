@@ -92,3 +92,8 @@ Most MCUs are built on **Harvard Architecture** (separate memory for program & d
 
 ## 👉 In One Line
 A **microcontroller** is a **self-contained, low-power mini-computer on a chip**, designed to control **specific devices/applications in real-time**.  
+
+
+
+<img width="1536" height="1024" alt="ChatGPT Image Aug 16, 2025, 12_22_06 PM" src="https://github.com/user-attachments/assets/5e167ef8-d8e0-4bf2-9ae5-dea82461072f" />
+
