@@ -43,7 +43,7 @@
 
 ---
 
-## 1) Nature & Scope
+## 1. Nature & Scope
 - **Git**: A tool (DVCS) you install on your machine. Manages your project history as a graph of commits, entirely offline.  
 - **GitHub**: A platform that hosts Git repositories and adds collaboration (PRs, reviews), automation (Actions), and governance (permissions, policies).  
 
@@ -51,7 +51,7 @@
 
 ---
 
-## 2) Data Model & What’s Actually Stored
+## 2. Data Model & What’s Actually Stored
 
 ### Git (under the hood)
 - **Objects**:  
@@ -71,7 +71,7 @@
 
 ---
 
-## 3) Operations: Local vs Remote
+## 3. Operations: Local vs Remote
 
 ### Git (local core)
 - Create/track: `git init`, `git add`, `git commit`  
@@ -88,7 +88,7 @@
 
 ---
 
-## 4) Collaboration Models
+## 4. Collaboration Models
 - **Pure Git**: share a bare repo over SSH; push to shared branches (trust-based).  
 - **GitHub Fork & PR**: contributors fork → push → PR → merge. Safer for open source.  
 - **GitHub Flow**: `main` always deployable → short-lived feature branches → PR → merge → deploy.  
@@ -97,7 +97,7 @@
 
 ---
 
-## 5) Identity, Signing, and Auth
+## 5. Identity, Signing, and Auth
 - **Git identity**: `user.name` + `user.email` (not authentication).  
 - **Commit signing**: GPG/SSH signing → `git log --show-signature`.  
 - **GitHub auth**: users, orgs, teams, SSO, PATs, fine-grained tokens.  
@@ -105,56 +105,56 @@
 
 ---
 
-## 6) CI/CD & Automation
+## 6. CI/CD & Automation
 - **Git**: none built-in; can script with hooks.  
 - **GitHub**: Actions (`.github/workflows/*.yml`), environments with approvals, reusable workflows, caching, artifacts.  
 
 ---
 
-## 7) Project Management & Knowledge
+## 7. Project Management & Knowledge
 - **Git**: no issues, boards, wiki.  
 - **GitHub**: Issues, labels, milestones, assignees, Projects (boards), Wiki, Discussions, closing keywords in commits/PRs (`Fixes #123`).  
 
 ---
 
-## 8) Security & Compliance
+## 8. Security & Compliance
 - **Git**: Local history, signing, hooks.  
 - **GitHub**: private repos, RBAC, branch protection, secret scanning, Dependabot, code scanning (SARIF), audit logs, IP allowlists.  
 
 ---
 
-## 9) Large Files & Monorepos
+## 9. Large Files & Monorepos
 - **Git & binaries**: poor diffs → repo bloat.  
 - **Git LFS**: stores pointers in Git, content separately.  
 - **GitHub**: LFS quotas, sparse/partial checkout, monorepo features (code search, path-owned reviews).  
 
 ---
 
-## 10) Hooks & Extensibility
+## 10. Hooks & Extensibility
 - **Git**: client hooks (pre-commit, commit-msg), server hooks (pre-receive).  
 - **GitHub**: webhooks, Checks API, Apps, Actions pipelines.  
 
 ---
 
-## 11) Hosting Options & Cost
+## 11. Hosting Options & Cost
 - **Git**: free, open source. Host anywhere (server, NAS).  
 - **GitHub**: cloud (GitHub.com) & Enterprise Server (self-hosted). Pricing varies.  
 
 ---
 
-## 12) Offline vs Online
+## 12. Offline vs Online
 - **Git**: fully offline (commit, branch, rebase on a plane).  
 - **GitHub**: needs internet for clone, push, PRs, CI, reviews.  
 
 ---
 
-## 13) Performance & Scaling
+## 13. Performance & Scaling
 - **Git**: packfiles, delta compression, gc, shallow/partial clones, sparse checkout.  
 - **GitHub**: optimized server-side; client still needs shallow/sparse clone for big repos.  
 
 ---
 
-## 14) Common Pitfalls (and fixes)
+## 14. Common Pitfalls (and fixes)
 - **Force-push to shared branches** → use branch protection.  
 - **Secrets in history** → GitHub secret scanning, pre-commit hooks.  
 - **Large binaries** → use Git LFS early.  
@@ -163,7 +163,7 @@
 
 ---
 
-## 15) Nuanced Difference Table
+## 15. Nuanced Difference Table
 
 | Aspect            | Git (Tool)                        | GitHub (Platform)                              |
 |-------------------|------------------------------------|------------------------------------------------|
@@ -180,7 +180,7 @@
 
 ---
 
-## 16) Practical Workflows (Side-by-Side)
+## 16. Practical Workflows (Side-by-Side)
 
 ### Local-only (pure Git)
 ```bash
