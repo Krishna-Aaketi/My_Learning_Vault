@@ -62,3 +62,66 @@ make
 -  **Efficiency** → rebuilds only changed files.  
 -  **Scalability** → handles projects with 100s of files.  
 -  **Flexibility** → can define extra tasks (`clean`, `install`, `test`, etc.).  
+
+# Understanding Makefile Basics
+---
+## 🔹 1. What is a Target?
+- A **target** is usually the name of a file to be created (like an executable or `.o` file).  
+- It can also be a **label for an action** (like `clean`).  
+
+**Examples:**
+```make
+program: main.o add.o   # "program" is the target
+main.o: main.c add.h    # "main.o" is the target
+clean:                  # "clean" is a phony target (not a file)
+```
+
+**Target = What do you want to build?**
+
+---
+
+## 🔹 2. What are Dependencies?
+- Dependencies are the files that the target depends on.  
+- If any dependency changes, `make` will rebuild the target.  
+
+### Example:
+```make
+main.o: main.c add.h
+```
+**Target = `main.o`**  
+**Dependencies = `main.c` and `add.h`**
+
+- If either `main.c` or `add.h` changes → `main.o` must be rebuilt.  
+
+---
+
+## 🔹 3. Commands (Recipes)
+
+After target and dependencies, you write the command(s) (indented with **TAB**).  
+
+###  Example:
+```make
+main.o: main.c add.h
+	gcc -c main.c
+```
+- If `main.c` or `add.h` changes → run `gcc -c main.c` to rebuild `main.o`.  
+
+---
+
+## 🔹 4. Putting It Together
+
+```make
+program: main.o add.o
+	gcc main.o add.o -o program
+```
+- Target = program
+
+- Dependencies = main.o and add.o
+
+- Command = gcc main.o add.o -o program
+
+### So:
+
+- If main.o or add.o is newer (modified) → rebuild program.
+
+- If program already exists and is up to date → make does nothing.
