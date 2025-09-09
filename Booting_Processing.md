@@ -56,3 +56,82 @@ to initialize hardware and load the **Operating System (OS)** into RAM for execu
 
 ---
 
+# ⚙️ Booting Process in an SoC (Qualcomm / ARM / Jetson Example)
+
+---
+
+## 🔹 1. Power-On Reset (PoR)
+- When you press power or apply supply, the SoC’s internal circuits **reset**.  
+- All **registers, CPU, and peripherals** go to a known default state.  
+- Ensures the chip starts clean (**no leftover data from before**).  
+
+---
+
+## 🔹 2. Boot ROM
+- Every SoC (Qualcomm, ARM, Nvidia Jetson, etc.) has a **tiny mask-programmed ROM code** built inside the chip.  
+
+**Purpose:**
+- Runs immediately after reset.  
+- Initializes very basic hardware (**CPU core, internal SRAM**).  
+- Looks for a **bootable image** in predefined sources:  
+  - eMMC, SD card, NAND, SPI flash, USB, UART  
+- Loads the **Primary Bootloader** into RAM and jumps to it.  
+
+👉 Think of Boot ROM as the **“first helper”** that finds the bootloader.  
+
+---
+
+## 🔹 3. Primary Bootloader (PBL / SBL1)
+- First software loaded from external storage.  
+
+**Responsibilities:**
+- Initialize **system clock** and basic **power configuration**.  
+- Set up **DDR (external RAM)** for larger programs.  
+- Do minimal **security checks** (digital signatures in secure boot).  
+- Loads the **Secondary Bootloader**.  
+
+---
+
+## 🔹 4. Secondary Bootloader (SBL2 / XBL / U-Boot / LK)
+- A bigger and more **feature-rich bootloader**.  
+
+**Responsibilities:**
+- Initialize peripherals (**UART, I2C, SPI, USB, display**).  
+- Set up storage drivers (**eMMC, SD, flash**).  
+- Perform **secure boot checks** if enabled.  
+- Provide a **shell/console** (e.g., U-Boot lets you type commands).  
+- Load the **OS kernel** into DDR and pass arguments (like **device tree** in Linux).  
+
+---
+
+## 🔹 5. OS Kernel
+- The **Linux / Android / RTOS kernel** is copied into RAM and executed.  
+
+**Responsibilities:**
+- Initialize **process scheduling**, **memory management**, and **device drivers**.  
+- Mount the **root filesystem (rootfs)**.  
+- Prepare environment for **user applications**.  
+
+---
+
+## 🔹 6. Init / Services
+- The kernel starts the **init process** (PID 1 in Linux/Android).  
+
+**Init (or systemd) Responsibilities:**
+- Start background **services (daemons)**.  
+- Mount additional filesystems.  
+- Launch user applications (**Android → Zygote → system apps**).  
+
+✅ At this stage, the system is **ready for use**.  
+
+---
+
+## 📌 Example: Android Boot Sequence on Qualcomm SoC
+1. **PoR**  
+2. **Boot ROM** → finds storage  
+3. **PBL (SBL1)** → init clocks, DDR  
+4. **SBL2 / XBL** → load TrustZone + U-Boot / ABL  
+5. **Kernel (Linux)** → init drivers, mount rootfs  
+6. **Init → Zygote → Android services → Launcher**  
+
+---
